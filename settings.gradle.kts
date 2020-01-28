@@ -1,3 +1,3 @@
-include(Modules.app)
+include(":app")
 
-rootProject.name = Config.project_name
+rootProject.name = "Ractsil"
