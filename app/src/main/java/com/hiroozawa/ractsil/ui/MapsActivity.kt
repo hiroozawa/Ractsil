@@ -1,7 +1,8 @@
-package com.hiroozawa.ractsil
+package com.hiroozawa.ractsil.ui
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.hiroozawa.ractsil.R
 import dagger.android.DaggerActivity
 import javax.inject.Inject
 

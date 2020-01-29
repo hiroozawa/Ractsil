@@ -1,8 +1,9 @@
-package com.hiroozawa.ractsil
+package com.hiroozawa.ractsil.di
 
 import android.content.Context
+import com.hiroozawa.ractsil.ui.MapsModule
+import com.hiroozawa.ractsil.RactsilApplication
 import com.hiroozawa.ractsil.remote.RemoteDataModule
-import com.hiroozawa.ractsil.viewmodel.ViewModelBuilder
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

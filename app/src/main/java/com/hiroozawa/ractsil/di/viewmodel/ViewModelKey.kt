@@ -1,4 +1,4 @@
-package com.hiroozawa.ractsil.viewmodel
+package com.hiroozawa.ractsil.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

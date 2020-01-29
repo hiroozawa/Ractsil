@@ -1,4 +1,4 @@
-package com.hiroozawa.ractsil
+package com.hiroozawa.ractsil.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

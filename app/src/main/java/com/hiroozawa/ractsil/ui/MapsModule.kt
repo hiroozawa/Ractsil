@@ -1,8 +1,10 @@
-package com.hiroozawa.ractsil
+package com.hiroozawa.ractsil.ui
 
 import androidx.lifecycle.ViewModel
-import com.hiroozawa.ractsil.viewmodel.ViewModelBuilder
-import com.hiroozawa.ractsil.viewmodel.ViewModelKey
+import com.hiroozawa.ractsil.ui.MapsActivity
+import com.hiroozawa.ractsil.ui.MapsActivityViewModel
+import com.hiroozawa.ractsil.di.viewmodel.ViewModelBuilder
+import com.hiroozawa.ractsil.di.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
