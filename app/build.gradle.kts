@@ -23,6 +23,7 @@ android {
 
     buildTypes {
         getByName("release") {
+            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
             isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
@@ -31,6 +32,7 @@ android {
             )
         }
         getByName("debug") {
+            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
             isMinifyEnabled = false
             isDebuggable = true
         }
@@ -90,11 +92,28 @@ dependencies {
     implementation(Dependencies.appcompat)
     implementation(Dependencies.android_annotation)
     implementation(Dependencies.play_services)
+    implementation(Dependencies.viewmodel_ktx)
 
 
     testImplementation(TestDependencies.test_core)
     testImplementation(TestDependencies.espresso_core)
     androidTestImplementation(TestDependencies.espresso_core)
+
+    // Dagger
+    implementation(Dependencies.dagger)
+    kapt(Dependencies.dagger_compiler)
+    implementation(Dependencies.dagger_android)
+    kapt(Dependencies.dagger_android_processor)
+    // Using Dagger in androidTest
+    kaptAndroidTest(Dependencies.dagger_compiler)
+    kaptTest(Dependencies.dagger_compiler)
+
+    implementation(Dependencies.gson)
+    implementation(Dependencies.okhttp)
+    implementation(Dependencies.okhttp_loggging)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofit_gson)
+
 }
 fun getSemanticAppVersionName(): String {
     val majorCode = 1
