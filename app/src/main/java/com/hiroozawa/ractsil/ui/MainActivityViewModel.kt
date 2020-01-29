@@ -6,13 +6,13 @@ import com.hiroozawa.ractsil.remote.CarRemoteDataSource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MapsActivityViewModel @Inject constructor(
+class MainActivityViewModel @Inject constructor(
     private val carRemoteDataSource: CarRemoteDataSource
 ) : ViewModel(){
 
     fun load(){
         viewModelScope.launch {
-            carRemoteDataSource.getCars()
+            carRemoteDataSource.fetchCars()
         }
     }
 

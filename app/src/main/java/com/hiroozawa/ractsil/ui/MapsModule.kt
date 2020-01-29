@@ -1,8 +1,6 @@
 package com.hiroozawa.ractsil.ui
 
 import androidx.lifecycle.ViewModel
-import com.hiroozawa.ractsil.ui.MapsActivity
-import com.hiroozawa.ractsil.ui.MapsActivityViewModel
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelBuilder
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelKey
 import dagger.Binds
@@ -21,10 +19,10 @@ abstract class MapsModule {
             ViewModelBuilder::class
         ]
     )
-    internal abstract fun addEMapsActivity(): MapsActivity
+    internal abstract fun addMapsActivity(): MainActivity
 
     @Binds
     @IntoMap
-    @ViewModelKey(MapsActivityViewModel::class)
-    internal abstract fun bindViewModel(viewmodel: MapsActivityViewModel): ViewModel
+    @ViewModelKey(MainActivityViewModel::class)
+    internal abstract fun bindViewModel(viewmodel: MainActivityViewModel): ViewModel
 }
