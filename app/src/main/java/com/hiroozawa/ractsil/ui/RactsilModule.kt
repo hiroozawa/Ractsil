@@ -12,7 +12,7 @@ import dagger.multibindings.IntoMap
  * Dagger module for maps feature
  */
 @Module
-abstract class MapsModule {
+abstract class RactsilModule {
 
     @ContributesAndroidInjector(
         modules = [
@@ -24,5 +24,5 @@ abstract class MapsModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainActivityViewModel::class)
-    internal abstract fun bindViewModel(viewmodel: MainActivityViewModel): ViewModel
+    internal abstract fun bindViewModel(viewModel: MainActivityViewModel): ViewModel
 }

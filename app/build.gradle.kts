@@ -27,8 +27,8 @@ android {
             isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
         }
         getByName("debug") {
@@ -61,20 +61,20 @@ android {
         isExperimental = true
     }
 
-    tasks.withType<JavaCompile> {
+    tasks.withType < JavaCompile > {
         options.isIncremental = true
         allprojects {
             options.compilerArgs.addAll(
-                arrayOf(
-                    "-Xlint:-unchecked",
-                    "-Xlint:deprecation",
-                    "-Xdiags:verbose"
-                )
+                    arrayOf(
+                            "-Xlint:-unchecked",
+                            "-Xlint:deprecation",
+                            "-Xdiags:verbose"
+                    )
             )
         }
     }
 
-    tasks.withType<KotlinCompile> {
+    tasks.withType < KotlinCompile > {
         kotlinOptions {
             jvmTarget = javaVersion.toString()
             allWarningsAsErrors = true
@@ -93,8 +93,13 @@ dependencies {
     implementation(Dependencies.android_annotation)
     implementation(Dependencies.play_services)
     implementation(Dependencies.viewmodel_ktx)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.2.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.2.0")
 
-
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     testImplementation(TestDependencies.test_core)
     testImplementation(TestDependencies.espresso_core)
     androidTestImplementation(TestDependencies.espresso_core)

@@ -1,5 +1,6 @@
 package com.hiroozawa.ractsil
 
+import com.hiroozawa.ractsil.di.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
