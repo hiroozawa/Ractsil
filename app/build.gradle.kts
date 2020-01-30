@@ -27,8 +27,8 @@ android {
             isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
         getByName("debug") {
@@ -61,20 +61,20 @@ android {
         isExperimental = true
     }
 
-    tasks.withType < JavaCompile > {
+    tasks.withType<JavaCompile> {
         options.isIncremental = true
         allprojects {
             options.compilerArgs.addAll(
-                    arrayOf(
-                            "-Xlint:-unchecked",
-                            "-Xlint:deprecation",
-                            "-Xdiags:verbose"
-                    )
+                arrayOf(
+                    "-Xlint:-unchecked",
+                    "-Xlint:deprecation",
+                    "-Xdiags:verbose"
+                )
             )
         }
     }
 
-    tasks.withType < KotlinCompile > {
+    tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = javaVersion.toString()
             allWarningsAsErrors = true
@@ -85,39 +85,45 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(Dependencies.kotlin)
-    implementation(Dependencies.material)
-    implementation(Dependencies.constraint_layout)
-    implementation(Dependencies.core_ktx)
-    implementation(Dependencies.appcompat)
-    implementation(Dependencies.android_annotation)
-    implementation(Dependencies.play_services)
-    implementation(Dependencies.viewmodel_ktx)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_gradle_plugin}")
+    implementation("com.google.android.material:material:${Versions.material}")
+    implementation("androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}")
+    implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+    implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
+    implementation("androidx.annotation:annotation:${Versions.android_annotation}")
+    implementation("com.google.android.gms:play-services-maps:${Versions.play_services}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}")
     implementation("androidx.navigation:navigation-fragment-ktx:2.2.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.2.0")
 
     implementation("androidx.recyclerview:recyclerview:1.1.0")
-    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    testImplementation(TestDependencies.test_core)
-    testImplementation(TestDependencies.espresso_core)
-    androidTestImplementation(TestDependencies.espresso_core)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
+
+    testImplementation("androidx.test:core:${Versions.test_core}")
+    testImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
 
     // Dagger
-    implementation(Dependencies.dagger)
-    kapt(Dependencies.dagger_compiler)
-    implementation(Dependencies.dagger_android)
-    kapt(Dependencies.dagger_android_processor)
+    implementation("com.google.dagger:dagger:${Versions.dagger}")
+    kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
+    implementation("com.google.dagger:dagger-android-support:${Versions.dagger}")
+    kapt("com.google.dagger:dagger-android-processor:${Versions.dagger}")
     // Using Dagger in androidTest
-    kaptAndroidTest(Dependencies.dagger_compiler)
-    kaptTest(Dependencies.dagger_compiler)
+    kaptAndroidTest("com.google.dagger:dagger-compiler:${Versions.dagger}")
+    kaptTest("com.google.dagger:dagger-compiler:${Versions.dagger}")
 
-    implementation(Dependencies.gson)
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.okhttp_loggging)
-    implementation(Dependencies.retrofit)
-    implementation(Dependencies.retrofit_gson)
+    implementation("com.google.code.gson:gson:${Versions.gson}")
+    implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
+    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")
+    implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
+    implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
 
 }
 fun getSemanticAppVersionName(): String {

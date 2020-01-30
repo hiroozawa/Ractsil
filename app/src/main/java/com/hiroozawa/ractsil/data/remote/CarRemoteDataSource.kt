@@ -1,4 +1,4 @@
-package com.hiroozawa.ractsil.remote
+package com.hiroozawa.ractsil.data.remote
 
 import retrofit2.http.GET
 
