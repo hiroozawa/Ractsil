@@ -21,7 +21,6 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel.printSome(this.toString())
 
         return inflater.inflate(R.layout.fragment_map, container, false)
     }

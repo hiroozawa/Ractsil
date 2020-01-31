@@ -16,7 +16,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 
-class MainActivity : DaggerAppCompatActivity(), OnListFragmentInteractionListener {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -38,10 +38,4 @@ class MainActivity : DaggerAppCompatActivity(), OnListFragmentInteractionListene
 
         viewModel.load()
     }
-
-    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
-
-    }
-
-
 }

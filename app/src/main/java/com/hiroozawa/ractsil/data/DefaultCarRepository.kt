@@ -15,7 +15,7 @@ class DefaultCarRepository @Inject constructor(
     override suspend fun fetchCars(): Result<List<Car>> = withContext(ioDispatcher) {
         return@withContext try {
             remoteDataSource.fetchCars()
-                .map { Car(it.name) }
+                .map { Car(it.id,it.name) }
                 .toList()
                 .let { Result.Success(it) }
         } catch (e: Exception) {

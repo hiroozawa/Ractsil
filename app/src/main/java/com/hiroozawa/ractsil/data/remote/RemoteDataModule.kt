@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.hiroozawa.ractsil.BuildConfig
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,6 +18,10 @@ object RemoteDataModule {
     fun provideCarRemote(retrofit: Retrofit): CarRemoteDataSource {
         return retrofit.create(CarRemoteDataSource::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideIoDispatcher() = Dispatchers.IO
 
     @Provides
     fun provideRetrofit(

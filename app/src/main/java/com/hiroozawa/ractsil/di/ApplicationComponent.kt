@@ -17,6 +17,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         RemoteDataModule::class,
+        RepositoryModule::class,
         RactsilModule::class,
         AndroidInjectionModule::class
     ]

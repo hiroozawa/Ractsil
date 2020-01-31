@@ -1,23 +1,45 @@
 package com.hiroozawa.ractsil.ui
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.hiroozawa.ractsil.data.remote.CarRemoteDataSource
+import androidx.lifecycle.*
+import com.hiroozawa.ractsil.data.Car
+import com.hiroozawa.ractsil.data.CarRepository
+import com.hiroozawa.ractsil.data.Result
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
-    private val carRemoteDataSource: CarRemoteDataSource
-) : ViewModel(){
+    private val carRepository: CarRepository
+) : ViewModel() {
 
-    fun load(){
+    private val _dataLoading = MutableLiveData<Boolean>()
+    val dataLoading: LiveData<Boolean> = _dataLoading
+
+    private val _cars = MutableLiveData<List<Car>>().apply { value = emptyList() }
+    val cars: LiveData<List<Car>> = _cars
+
+    private val _errorLabel = MutableLiveData<Boolean>()
+    val errorLabel: LiveData<Boolean> = _errorLabel
+
+    val empty: LiveData<Boolean> = Transformations.map(_cars) {
+        it.isEmpty()
+    }
+
+    fun load() {
+        _dataLoading.value = true
+
         viewModelScope.launch {
-            carRemoteDataSource.fetchCars()
+            when (val result = carRepository.fetchCars()) {
+                is Result.Success -> _cars.value = result.data.also{ print("HAHA")}
+                is Result.Error -> _errorLabel.value = true
+            }
         }
+
+        _dataLoading.value = false
     }
 
-    fun printSome(className: String){
-        print("fromfragment $className")
+    fun refresh() {
+
     }
+
 
 }

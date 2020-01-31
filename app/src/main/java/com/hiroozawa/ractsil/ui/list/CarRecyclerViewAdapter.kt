@@ -1,64 +1,65 @@
 package com.hiroozawa.ractsil.ui.list
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.hiroozawa.ractsil.R
-
-
-import com.hiroozawa.ractsil.ui.list.CarListFragment.OnListFragmentInteractionListener
-import com.hiroozawa.ractsil.ui.list.dummy.DummyContent.DummyItem
-
-import kotlinx.android.synthetic.main.fragment_car.view.*
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.hiroozawa.ractsil.data.Car
+import com.hiroozawa.ractsil.databinding.CarItemBinding
+import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
+ * [RecyclerView.Adapter] that can display a [Car], Has a reference to the [MainActivityViewModel]
+ * to send actions back to it.
  */
-class CarRecyclerViewAdapter(
-    private val mValues: List<DummyItem>,
-    private val mListener: OnListFragmentInteractionListener?
-) : RecyclerView.Adapter<CarRecyclerViewAdapter.ViewHolder>() {
+class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
+    ListAdapter<Car, CarRecyclerViewAdapter.ViewHolder>(CarDiffCallBack()) {
 
-    private val mOnClickListener: View.OnClickListener
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
 
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyItem
-            // Notify the active callbacks interface (the activity, if the fragment is attached to
-            // one) that an item has been selected.
-            mListener?.onListFragmentInteraction(item)
-        }
+        holder.bind(viewModel, item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_car, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = mValues[position]
-        holder.mIdView.text = item.id
-        holder.mContentView.text = item.content
+    class ViewHolder private constructor(val binding: CarItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        with(holder.mView) {
-            tag = item
-            setOnClickListener(mOnClickListener)
+        fun bind(viewModel: MainActivityViewModel, item: Car) {
+
+            binding.viewmodel = viewModel
+            binding.car = item
+            binding.executePendingBindings()
         }
-    }
 
-    override fun getItemCount(): Int = mValues.size
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = CarItemBinding.inflate(layoutInflater, parent, false)
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.item_number
-        val mContentView: TextView = mView.content
-
-        override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+                return ViewHolder(binding)
+            }
         }
     }
 }
+
+/**
+ * Callback for calculating the diff between two non-null items in a list.
+ *
+ * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
+ * list that's been passed to `submitList`.
+ */
+class CarDiffCallBack : DiffUtil.ItemCallback<Car>() {
+    override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Car, newItem: Car): Boolean {
+        return oldItem == newItem
+    }
+}
+
