@@ -9,9 +9,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hiroozawa.ractsil.R
-import com.hiroozawa.ractsil.ui.list.CarListFragment
-import com.hiroozawa.ractsil.ui.list.CarListFragment.*
-import com.hiroozawa.ractsil.ui.list.dummy.DummyContent
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -20,7 +17,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
+    private val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

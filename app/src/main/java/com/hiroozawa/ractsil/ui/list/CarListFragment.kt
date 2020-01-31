@@ -21,9 +21,10 @@ class CarListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewDataBinding = FragmentCarListBinding.inflate(inflater, container, false).apply {
-            viewmodel = viewModel
-        }
+        viewDataBinding = FragmentCarListBinding.inflate(inflater, container, false)
+            .apply {
+                viewmodel = viewModel
+            }
         return viewDataBinding.root
     }
 

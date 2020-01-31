@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 /**
- * Dagger module for maps feature
+ * Dagger module for main activity
  */
 @Module
 abstract class RactsilModule {

@@ -29,7 +29,7 @@ class MainActivityViewModel @Inject constructor(
 
         viewModelScope.launch {
             when (val result = carRepository.fetchCars()) {
-                is Result.Success -> _cars.value = result.data.also{ print("HAHA")}
+                is Result.Success -> _cars.value = result.data
                 is Result.Error -> _errorLabel.value = true
             }
         }

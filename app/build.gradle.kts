@@ -101,6 +101,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
+    implementation("io.coil-kt:coil:0.9.2")
+
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
 
