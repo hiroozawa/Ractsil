@@ -1,7 +1,7 @@
 package com.hiroozawa.ractsil.data
 
 /**
- * A generic class that holds a data class value with its loading status.
+ * A generic class that holds a data class value with success or error
  * @param <T>
  */
 sealed class Result<out R> {
