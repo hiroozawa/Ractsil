@@ -24,13 +24,6 @@ class MainActivityViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-
-    @Before
-    fun setup() {
-        val carRepository = FakeCarRepository()
-        viewModel = MainActivityViewModel(carRepository)
-    }
-
     @ExperimentalCoroutinesApi
     @Test
     fun `load should trigger loading and retrieve data correctly`() {
@@ -38,7 +31,9 @@ class MainActivityViewModelTest {
         mainCoroutineRule.pauseDispatcher()
 
         // Trigger loading of tasks
-        viewModel.load()
+        val carRepository = FakeCarRepository()
+        viewModel = MainActivityViewModel(carRepository)
+
 
         // Then progress indicator is shown
         assertTrue(LiveDataTestUtil.getValue(viewModel.dataLoading))
@@ -56,15 +51,12 @@ class MainActivityViewModelTest {
     @ExperimentalCoroutinesApi
     @Test
     fun `load should trigger loading and trigger error`() {
-        // Instantiate viewModel with a repository that returns an error
-        val carRepository = FakeCarRepository(null)
-        viewModel = MainActivityViewModel(carRepository)
-
         // Pause dispatcher so we can verify initial values
         mainCoroutineRule.pauseDispatcher()
 
         // Trigger loading of tasks
-        viewModel.load()
+        val carRepository = FakeCarRepository(null)
+        viewModel = MainActivityViewModel(carRepository)
 
         // Then progress indicator is shown
         assertTrue(LiveDataTestUtil.getValue(viewModel.dataLoading))

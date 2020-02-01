@@ -1,11 +1,11 @@
 package com.hiroozawa.ractsil.ui
 
 import androidx.lifecycle.*
-import com.hiroozawa.ractsil.domain.Car
+import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
+import com.hiroozawa.ractsil.domain.Car
 import kotlinx.coroutines.launch
-import com.hiroozawa.ractsil.R
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
@@ -25,7 +25,11 @@ class MainActivityViewModel @Inject constructor(
         it.isEmpty()
     }
 
-    fun load() {
+    init {
+        load()
+    }
+
+    private fun load() {
         _dataLoading.value = true
 
         viewModelScope.launch {
@@ -35,12 +39,9 @@ class MainActivityViewModel @Inject constructor(
             }
             _dataLoading.value = false
         }
-
     }
 
     fun refresh() {
-
+        load()
     }
-
-
 }

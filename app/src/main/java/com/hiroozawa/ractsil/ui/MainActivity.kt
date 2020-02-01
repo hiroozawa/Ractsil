@@ -2,6 +2,7 @@ package com.hiroozawa.ractsil.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -35,6 +36,8 @@ class MainActivity : DaggerAppCompatActivity(){
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        viewModel.load()
+        viewModel.errorLabel.observe(this, Observer {
+
+        })
     }
 }
