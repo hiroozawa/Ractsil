@@ -1,7 +1,7 @@
 package com.hiroozawa.ractsil.ui
 
 import androidx.lifecycle.*
-import com.hiroozawa.ractsil.data.Car
+import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
 import kotlinx.coroutines.launch

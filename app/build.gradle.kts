@@ -78,6 +78,7 @@ android {
         kotlinOptions {
             jvmTarget = javaVersion.toString()
             allWarningsAsErrors = true
+            freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
         }
     }
 }
@@ -135,3 +136,4 @@ fun getSemanticAppVersionName(): String {
 
     return "$majorCode.$minorCode.$patchCode"
 }
+

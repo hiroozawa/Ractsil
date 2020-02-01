@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hiroozawa.ractsil.data.Car
+import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.databinding.CarItemBinding
 import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
@@ -55,7 +55,7 @@ class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
  */
 class CarDiffCallBack : DiffUtil.ItemCallback<Car>() {
     override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.carId == newItem.carId
     }
 
     override fun areContentsTheSame(oldItem: Car, newItem: Car): Boolean {

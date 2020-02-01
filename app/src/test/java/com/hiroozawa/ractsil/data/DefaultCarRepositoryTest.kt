@@ -1,5 +1,6 @@
 package com.hiroozawa.ractsil.data
 
+import com.hiroozawa.ractsil.domain.Car
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

@@ -13,7 +13,7 @@
 
         <variable
             name="car"
-            type="com.hiroozawa.ractsil.data.Car" />
+            type="com.hiroozawa.ractsil.domain.Car" />
 
     </data>
     <androidx.cardview.widget.CardView
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                app:image="@{car.imageUrl}"
+                app:image="@{car.carImageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/image"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/colorPrimary"
-                android:text="@{car.name}"
+                android:text="@{car.owner}"
                 tools:text="Quentin" />
 
             <TextView
@@ -96,7 +96,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/licence_plate_label"
-                android:text="@{car.licencePlate}"
+                android:text="@{car.licensePlate}"
                 tools:text="M-VO0310" />
 
             <TextView
@@ -117,7 +117,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/fuel_type_label"
-                android:text="@{car.fuelType}"
+                android:text="@{String.valueOf(car.fuel.fuelTypeType)}"
                 tools:text="P" />
 
             <TextView
@@ -139,7 +139,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/fuel_level_label"
-                android:text="@{String.valueOf(car.fuelLevel)}"
+                android:text="@{String.valueOf(car.fuel.fuelLevel)}"
                 tools:text="0.8" />
 
             <TextView
@@ -161,7 +161,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/transmission_label"
-                android:text="@{car.transmission}"
+                android:text="@{String.valueOf(car.transmission)}"
                 tools:text="M" />
 
             <TextView
@@ -183,7 +183,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/inner_cleanliness_label"
-                android:text="@{car.innerCleanliness}"
+                android:text="@{String.valueOf(car.innerCleanliness)}"
                 tools:text="Regular" />
 
             <androidx.constraintlayout.widget.Guideline

@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.hiroozawa.ractsil.R
-import com.hiroozawa.ractsil.data.Car
+import com.hiroozawa.ractsil.domain.Car
 
 /**
  * [BindingAdapter]s for the [Car]s list.
