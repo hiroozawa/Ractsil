@@ -12,8 +12,12 @@ class SuccessDispatcher(
 ) : Dispatcher() {
 
     override fun dispatch(request: RecordedRequest) =
-        asset(context, "success.json").let {
-            MockResponse().setResponseCode(200).setBody(it)
+        if (request.path == "/codingtask/cars") {
+            asset(context, "success.json").let {
+                MockResponse().setResponseCode(200).setBody(it)
+            }
+        } else {
+            MockResponse().setResponseCode(500)
         }
 }
 
