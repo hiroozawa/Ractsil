@@ -107,6 +107,12 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
 
+    // AndroidX Test - JVM testing
+    testImplementation ("androidx.arch.core:core-testing:2.0.0")
+    testImplementation("androidx.test:core-ktx:1.2.0")
+    testImplementation("androidx.test.ext:junit-ktx:1.1.1")
+    testImplementation("androidx.test:rules:1.2.0")
+
     testImplementation("androidx.test:core:${Versions.test_core}")
     testImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
@@ -122,6 +128,7 @@ dependencies {
     kaptAndroidTest("com.google.dagger:dagger-compiler:${Versions.dagger}")
     kaptTest("com.google.dagger:dagger-compiler:${Versions.dagger}")
 
+    // Remote
     implementation("com.google.code.gson:gson:${Versions.gson}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
     implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")

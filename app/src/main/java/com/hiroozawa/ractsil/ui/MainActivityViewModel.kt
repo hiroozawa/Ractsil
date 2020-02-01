@@ -32,9 +32,9 @@ class MainActivityViewModel @Inject constructor(
                 is Result.Success -> _cars.value = result.data
                 is Result.Error -> _errorLabel.value = true
             }
+            _dataLoading.value = false
         }
 
-        _dataLoading.value = false
     }
 
     fun refresh() {

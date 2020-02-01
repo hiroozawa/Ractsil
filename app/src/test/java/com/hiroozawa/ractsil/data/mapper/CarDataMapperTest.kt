@@ -1,6 +1,5 @@
-package com.hiroozawa.ractsil.data
+package com.hiroozawa.ractsil.data.mapper
 
-import com.hiroozawa.ractsil.data.mapper.CarDataMapper
 import com.hiroozawa.ractsil.data.remote.CarResponse
 import com.hiroozawa.ractsil.domain.InnerCleanliness
 import com.hiroozawa.ractsil.domain.Transmission
