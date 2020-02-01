@@ -33,7 +33,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         with(viewDataBinding) {
             navView.setupWithNavController(navController)
-            root.setupSnackbar(this@MainActivity, viewModel.errorLabel, Snackbar.LENGTH_LONG)
+            root.setupSnackbar(this@MainActivity, viewModel.errorEvent, Snackbar.LENGTH_LONG)
         }
     }
 

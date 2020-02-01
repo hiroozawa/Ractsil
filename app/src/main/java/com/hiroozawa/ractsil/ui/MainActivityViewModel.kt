@@ -18,8 +18,8 @@ class MainActivityViewModel @Inject constructor(
     private val _cars = MutableLiveData<List<Car>>().apply { value = emptyList() }
     val cars: LiveData<List<Car>> = _cars
 
-    private val _errorSnackBar = MutableLiveData<Event<Int>>()
-    val errorLabel: LiveData<Event<Int>> = _errorSnackBar
+    private val _errorEvent = MutableLiveData<Event<Int>>()
+    val errorEvent: LiveData<Event<Int>> = _errorEvent
 
     val empty: LiveData<Boolean> = Transformations.map(_cars) {
         it.isEmpty()
@@ -35,7 +35,7 @@ class MainActivityViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = carRepository.fetchCars()) {
                 is Result.Success -> _cars.value = result.data
-                is Result.Error -> _errorSnackBar.value = Event(R.string.error)
+                is Result.Error -> _errorEvent.value = Event(R.string.error)
             }
             _dataLoading.value = false
         }

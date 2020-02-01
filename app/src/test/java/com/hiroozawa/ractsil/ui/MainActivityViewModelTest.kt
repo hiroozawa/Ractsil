@@ -8,7 +8,6 @@ import com.hiroozawa.ractsil.util.LiveDataTestUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.core.IsEqual
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -68,7 +67,7 @@ class MainActivityViewModelTest {
         assertFalse(LiveDataTestUtil.getValue(viewModel.dataLoading))
 
         // Error should be shown
-        val errorMessageEvent =  LiveDataTestUtil.getValue(viewModel.errorLabel)
+        val errorMessageEvent =  LiveDataTestUtil.getValue(viewModel.errorEvent)
         val errorMessageId =  errorMessageEvent.getContentIfNotHandled()
         assertThat(errorMessageId, IsEqual(R.string.error))
 

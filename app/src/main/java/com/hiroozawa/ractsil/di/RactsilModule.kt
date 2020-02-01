@@ -1,8 +1,10 @@
-package com.hiroozawa.ractsil.ui
+package com.hiroozawa.ractsil.di
 
 import androidx.lifecycle.ViewModel
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelBuilder
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelKey
+import com.hiroozawa.ractsil.ui.MainActivity
+import com.hiroozawa.ractsil.ui.MainActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
