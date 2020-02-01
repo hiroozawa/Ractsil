@@ -35,11 +35,8 @@ class CarListFragment : Fragment() {
     }
 
     private fun setupListAdapter() {
-        val viewModel = viewDataBinding.viewmodel
-        if (viewModel != null) {
-            viewDataBinding.carList.adapter = CarRecyclerViewAdapter(viewModel)
-        } else {
-            //log view model is not initialized
+        viewDataBinding.viewmodel?.let {
+            viewDataBinding.carList.adapter = CarRecyclerViewAdapter(it)
         }
     }
 

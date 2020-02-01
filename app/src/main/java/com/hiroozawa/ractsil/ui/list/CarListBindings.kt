@@ -18,9 +18,9 @@ fun setItems(listView: RecyclerView, items: List<Car>) {
 
 
 @BindingAdapter("app:image")
-fun setImage(imageView:ImageView, url: String) {
+fun setImage(imageView: ImageView, url: String) {
     imageView.load(url) {
         crossfade(true)
-        placeholder(R.drawable.ic_placeholder)
+        error(R.drawable.ic_fallback)
     }
 }

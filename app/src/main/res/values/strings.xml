@@ -3,4 +3,11 @@
     <string name="title_activity_maps">Map</string>
     <string name="error">Error while loading cars. Check your internet connection.</string>
     <string name="no_cars">No cars were listed!</string>
+    <string name="make">Make: </string>
+    <string name="model">Model: </string>
+    <string name="licence_plate">Licence Plate: </string>
+    <string name="fuel">Fuel: </string>
+    <string name="fuel_level">Fuel level: </string>
+    <string name="transmission">Transmission: </string>
+    <string name="inner_cleanliness">Inner Cleanliness: </string>
 </resources>

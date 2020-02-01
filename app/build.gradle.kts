@@ -21,18 +21,29 @@ android {
         testInstrumentationRunner = "com.hiroozawa.ractsil.MockTestRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file("hiro_ractsil.jks")
+            storePassword = "123123"
+            keyAlias = "hiro"
+            keyPassword = "123123"
+        }
+    }
+
     buildTypes {
         getByName("release") {
             buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
         getByName("debug") {
-            buildConfigField("String", "SERVER_URL", "\"http://127.0.0.1:8080\"")
+//            buildConfigField("String", "SERVER_URL", "\"http://127.0.0.1:8080\"")
+            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
             isMinifyEnabled = false
             isDebuggable = true
         }

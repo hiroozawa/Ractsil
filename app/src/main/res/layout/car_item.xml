@@ -16,13 +16,14 @@
             type="com.hiroozawa.ractsil.domain.Car" />
 
     </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
         android:layout_margin="8dp"
         android:padding="8dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,158 +33,166 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:layout_height="150dp"
+                android:scaleType="center"
                 app:image="@{car.carImageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@drawable/ic_fallback" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
-                app:layout_constraintBottom_toBottomOf="@+id/image"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="16dp"
                 android:text="@{car.owner}"
-                tools:text="Quentin" />
-
-            <TextView
-                android:id="@+id/make_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image"
-                android:text="Make"
-                />
+                tools:text="Quentin" />
+
 
             <TextView
                 android:id="@+id/make_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintBottom_toBottomOf="@id/make_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/make_label"
+                android:paddingStart="8dp"
                 android:text="@{car.make}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="@+id/model_value"
+                app:layout_constraintStart_toEndOf="@+id/model_value"
+                app:layout_constraintTop_toTopOf="@+id/model_value"
                 tools:text="BMW" />
+
+            <TextView
+                android:id="@+id/model_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/model"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <TextView
+                android:id="@+id/model_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{car.model.modelName}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="@id/model_label"
+                app:layout_constraintStart_toEndOf="@+id/model_label"
+                app:layout_constraintTop_toTopOf="@+id/model_label"
+                tools:text="MINI" />
 
             <TextView
                 android:id="@+id/licence_plate_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/licence_plate"
                 android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/make_label"
-                android:text="Licence Plate" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/model_label" />
 
             <TextView
                 android:id="@+id/licence_plate_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{car.licensePlate}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/licence_plate_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/licence_plate_label"
                 app:layout_constraintTop_toTopOf="@+id/licence_plate_label"
-                android:text="@{car.licensePlate}"
                 tools:text="M-VO0310" />
 
             <TextView
                 android:id="@+id/fuel_type_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/fuel"
                 android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/licence_plate_label"
-                android:text="Fuel type" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/licence_plate_label" />
 
             <TextView
                 android:id="@+id/fuel_type_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/fuel_type_label"
+                android:layout_marginStart="8dp"
                 android:text="@{String.valueOf(car.fuel.fuelTypeType)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="@+id/fuel_type_label"
+                app:layout_constraintStart_toEndOf="@+id/fuel_type_label"
+                app:layout_constraintTop_toTopOf="@+id/fuel_type_label"
                 tools:text="P" />
 
-            <TextView
-                android:id="@+id/fuel_level_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fuel_type_label"
-                android:text="Fuel level" />
 
             <TextView
                 android:id="@+id/fuel_level_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintBottom_toBottomOf="@+id/fuel_level_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/fuel_level_label"
+                android:paddingStart="8dp"
                 android:text="@{String.valueOf(car.fuel.fuelLevel)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintBottom_toBottomOf="@+id/fuel_type_value"
+                app:layout_constraintStart_toEndOf="@+id/fuel_type_value"
+                app:layout_constraintTop_toTopOf="@+id/fuel_type_value"
                 tools:text="0.8" />
 
             <TextView
                 android:id="@+id/transmission_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/transmission"
                 android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fuel_level_label"
-                android:text="Transmission" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/fuel_type_label" />
 
             <TextView
                 android:id="@+id/transmission_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{String.valueOf(car.transmission)}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/transmission_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/transmission_label"
                 app:layout_constraintTop_toTopOf="@+id/transmission_label"
-                android:text="@{String.valueOf(car.transmission)}"
                 tools:text="M" />
 
             <TextView
                 android:id="@+id/inner_cleanliness_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/inner_cleanliness"
                 android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/transmission_label"
-                android:text="Inner Cleanliness" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/transmission_label" />
 
             <TextView
                 android:id="@+id/inner_cleanliness_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/inner_cleanliness_label"
+                android:layout_marginStart="8dp"
                 android:text="@{String.valueOf(car.innerCleanliness)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toEndOf="@+id/inner_cleanliness_label"
+                app:layout_constraintTop_toTopOf="@+id/inner_cleanliness_label"
                 tools:text="Regular" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -191,7 +200,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.2" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

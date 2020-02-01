@@ -10,16 +10,18 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.*
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hiroozawa.ractsil.R
+import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
-class MapFragment : Fragment(),OnMapReadyCallback,
+class MapFragment : Fragment(), OnMapReadyCallback,
     OnInfoWindowClickListener {
 
     private val viewModel by activityViewModels<MainActivityViewModel>()
@@ -44,19 +46,38 @@ class MapFragment : Fragment(),OnMapReadyCallback,
         map = googleMap
 
         map.setOnInfoWindowClickListener(this)
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        map.addMarker(
-            MarkerOptions()
-                .position(sydney)
-                .title("Car Name")
-                .snippet("Touch to show on list")
 
-        )
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        viewModel.cars.observe(this, Observer(addListToMakers()))
     }
 
+
+    private fun addListToMakers(): (List<Car>) -> Unit =
+        { carList ->
+
+            map.clear()
+            val boundsBuilder = LatLngBounds.Builder()
+
+            carList.map { car ->
+                val latLng = LatLng(car.coordinate.latitude, car.coordinate.longitude)
+                boundsBuilder.include(latLng)
+
+                MarkerOptions()
+                    .position(latLng)
+                    .title(car.owner.name)
+                    .snippet("Model: ${car.model.modelName}\n")
+
+
+            }.forEach {
+                map.addMarker(it)
+            }
+
+            val cameraUpdate = CameraUpdateFactory
+                .newLatLngBounds(boundsBuilder.build(), 0)
+            map.moveCamera(cameraUpdate)
+        }
+
     override fun onInfoWindowClick(marker: Marker) {
-        Toast.makeText(this.context,"Marker ${marker.title} was clicked",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, "Marker ${marker.title} was clicked", Toast.LENGTH_SHORT)
+            .show()
     }
 }
