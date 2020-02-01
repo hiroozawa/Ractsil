@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hiroozawa.ractsil.ui
+package com.hiroozawa.ractsil.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

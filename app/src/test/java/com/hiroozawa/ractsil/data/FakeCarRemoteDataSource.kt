@@ -8,7 +8,7 @@ class FakeCarRemoteDataSource(
 ) : CarRemoteDataSource {
 
     override suspend fun fetchCars(): List<CarResponse> {
-        if (responseList == null) throw Exception("Some Network error")
+        if (responseList == null) throw Exception("Test Network error")
         return responseList
     }
 }

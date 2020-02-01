@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hiroozawa.ractsil
+package com.hiroozawa.ractsil.util
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

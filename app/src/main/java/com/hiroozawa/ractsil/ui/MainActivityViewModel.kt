@@ -5,6 +5,7 @@ import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
 import kotlinx.coroutines.launch
+import com.hiroozawa.ractsil.R
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
@@ -17,8 +18,8 @@ class MainActivityViewModel @Inject constructor(
     private val _cars = MutableLiveData<List<Car>>().apply { value = emptyList() }
     val cars: LiveData<List<Car>> = _cars
 
-    private val _errorLabel = MutableLiveData<Boolean>()
-    val errorLabel: LiveData<Boolean> = _errorLabel
+    private val _errorSnackBar = MutableLiveData<Event<Int>>()
+    val errorLabel: LiveData<Event<Int>> = _errorSnackBar
 
     val empty: LiveData<Boolean> = Transformations.map(_cars) {
         it.isEmpty()
@@ -30,7 +31,7 @@ class MainActivityViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = carRepository.fetchCars()) {
                 is Result.Success -> _cars.value = result.data
-                is Result.Error -> _errorLabel.value = true
+                is Result.Error -> _errorSnackBar.value = Event(R.string.error)
             }
             _dataLoading.value = false
         }
