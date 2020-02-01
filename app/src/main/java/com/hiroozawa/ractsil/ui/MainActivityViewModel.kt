@@ -5,6 +5,7 @@ import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
 import com.hiroozawa.ractsil.domain.Car
+import com.hiroozawa.ractsil.ui.util.wrapEspressoIdlingResource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,13 +33,16 @@ class MainActivityViewModel @Inject constructor(
     private fun load() {
         _dataLoading.value = true
 
-        viewModelScope.launch {
-            when (val result = carRepository.fetchCars()) {
-                is Result.Success -> _cars.value = result.data
-                is Result.Error -> _errorEvent.value = Event(R.string.error)
+        wrapEspressoIdlingResource {
+            viewModelScope.launch {
+                when (val result = carRepository.fetchCars()) {
+                    is Result.Success -> _cars.value = result.data
+                    is Result.Error -> _errorEvent.value = Event(R.string.error)
+                }
+                _dataLoading.value = false
             }
-            _dataLoading.value = false
         }
+
     }
 
     fun refresh() {

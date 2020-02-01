@@ -18,7 +18,7 @@ android {
         targetSdkVersion(extra["targetSdkVersion"] as Int)
         versionCode = 1
         versionName = getSemanticAppVersionName()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.hiroozawa.ractsil.MockTestRunner"
     }
 
     buildTypes {
@@ -32,7 +32,7 @@ android {
             )
         }
         getByName("debug") {
-            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://127.0.0.1:8080\"")
             isMinifyEnabled = false
             isDebuggable = true
         }
@@ -104,20 +104,26 @@ dependencies {
 
     implementation("io.coil-kt:coil:0.9.2")
 
+    // AndroidX Test - JVM testing
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
-
-    // AndroidX Test - JVM testing
-    testImplementation ("androidx.arch.core:core-testing:2.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.0.0")
     testImplementation("androidx.test:core-ktx:1.2.0")
     testImplementation("androidx.test.ext:junit-ktx:1.1.1")
     testImplementation("androidx.test:rules:1.2.0")
-
     testImplementation("androidx.test:core:${Versions.test_core}")
     testImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
+    implementation("androidx.test.espresso:espresso-idling-resource:${Versions.espresso_core}")
+
+
+    // Android Test
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
+    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:${Versions.espresso_core}")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.2.0")
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:${Versions.okhttp}")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.2.0")
 
     // Dagger
     implementation("com.google.dagger:dagger:${Versions.dagger}")
@@ -134,7 +140,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
-
 }
 fun getSemanticAppVersionName(): String {
     val majorCode = 1

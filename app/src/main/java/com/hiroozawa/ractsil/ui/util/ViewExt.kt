@@ -31,11 +31,11 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
     Snackbar.make(this, snackbarText, timeLength).run {
         addCallback(object : Snackbar.Callback() {
             override fun onShown(sb: Snackbar?) {
-                //   EspressoIdlingResource.increment()
+                EspressoIdlingResource.increment()
             }
 
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                //     EspressoIdlingResource.decrement()
+                EspressoIdlingResource.decrement()
             }
         })
         show()
