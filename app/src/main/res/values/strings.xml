@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Ractsil</string>
     <string name="title_activity_maps">Map</string>
-    <string name="error">Error while loading cars</string>
+    <string name="error">Error while loading cars. Check your internet connection.</string>
 </resources>
