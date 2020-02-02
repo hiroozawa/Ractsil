@@ -9,18 +9,24 @@ object CarDataMapper {
             Car(
                 carId = CarId(id = carResp.id),
                 owner = Owner(name = carResp.name),
-                coordinate = Coordinate(carResp.latitude, carResp.longitude),
-                model = Model(carResp.modelIdentifier, carResp.modelName),
+                coordinate = mapCoordinate(carResp),
+                model = mapModel(carResp),
                 make = Make(carResp.make),
                 color = Color(carResp.color),
-                fuel = CarFuel(
-                    fuelLevel = carResp.fuelLevel,
-                    fuelType = FuelTypeDataMapper(carResp.fuelType)
-                ),
+                fuel = mapCarFuel(carResp),
                 transmission = TransmissionDataMapper(carResp.transmission),
                 licensePlate = LicencePlate(carResp.licensePlate),
                 innerCleanliness = CleanlinessDataMapper(carResp.innerCleanliness),
                 carImage = CarImage(carResp.carImageUrl)
             )
         }
+
+    private fun mapCoordinate(carResp: CarResponse) =
+        Coordinate(carResp.latitude, carResp.longitude)
+
+    private fun mapModel(carResp: CarResponse) =
+        Model(carResp.modelIdentifier, carResp.modelName)
+
+    private fun mapCarFuel(carResp: CarResponse) =
+        CarFuel(FuelTypeDataMapper(carResp.fuelType), carResp.fuelLevel)
 }
