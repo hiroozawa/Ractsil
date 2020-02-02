@@ -10,4 +10,12 @@
     <string name="fuel_level">Fuel level: </string>
     <string name="transmission">Transmission: </string>
     <string name="inner_cleanliness">Inner Cleanliness: </string>
+    <string name="petrol">(Petrol)</string>
+    <string name="diesel">(Diesel)</string>
+    <string name="unknown">Unknown</string>
+    <string name="auto">Auto</string>
+    <string name="manual">Manual</string>
+    <string name="regular">Regular</string>
+    <string name="clean">Clean</string>
+    <string name="very_clean">Very clean</string>
 </resources>

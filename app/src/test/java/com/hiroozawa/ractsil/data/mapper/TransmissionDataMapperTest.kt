@@ -28,7 +28,7 @@ class TransmissionDataMapperTest {
         val transmission = TransmissionDataMapper(transmissionString)
 
         //then
-        assertThat(transmission, IsEqual(Transmission.AUTOMATIC))
+        assertThat(transmission, IsEqual(Transmission.AUTO))
     }
 
     @Test

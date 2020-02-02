@@ -12,7 +12,7 @@ import com.hiroozawa.ractsil.domain.Car
  */
 
 @BindingAdapter("app:items")
-fun setItems(listView: RecyclerView, items: List<Car>) {
+fun setItems(listView: RecyclerView, items: List<CarUiModel>) {
     (listView.adapter as CarRecyclerViewAdapter).submitList(items)
 }
 

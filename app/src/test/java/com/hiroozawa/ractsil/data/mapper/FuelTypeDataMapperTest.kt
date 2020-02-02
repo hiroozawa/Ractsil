@@ -28,7 +28,7 @@ class FuelTypeDataMapperTest {
         val fuelType = FuelTypeDataMapper(fuelTypeString)
 
         //then
-        assertThat(fuelType, IsEqual(FuelType.PETROLEUM))
+        assertThat(fuelType, IsEqual(FuelType.PETROL))
     }
 
     @Test

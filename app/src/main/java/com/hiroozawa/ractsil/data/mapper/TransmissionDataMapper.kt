@@ -4,7 +4,7 @@ import com.hiroozawa.ractsil.domain.Transmission
 
 object TransmissionDataMapper {
     operator fun invoke(transmission: String) = when (transmission) {
-        "A" -> Transmission.AUTOMATIC
+        "A" -> Transmission.AUTO
         "M" -> Transmission.MANUAL
         else -> Transmission.UNKNOWN
     }

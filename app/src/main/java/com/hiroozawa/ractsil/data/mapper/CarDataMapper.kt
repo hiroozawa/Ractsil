@@ -15,12 +15,12 @@ object CarDataMapper {
                 color = Color(carResp.color),
                 fuel = CarFuel(
                     fuelLevel = carResp.fuelLevel,
-                    fuelTypeType = FuelTypeDataMapper(carResp.fuelType)
+                    fuelType = FuelTypeDataMapper(carResp.fuelType)
                 ),
                 transmission = TransmissionDataMapper(carResp.transmission),
                 licensePlate = LicencePlate(carResp.licensePlate),
                 innerCleanliness = CleanlinessDataMapper(carResp.innerCleanliness),
-                carImageUrl = CarImage(carResp.carImageUrl)
+                carImage = CarImage(carResp.carImageUrl)
             )
         }
 }

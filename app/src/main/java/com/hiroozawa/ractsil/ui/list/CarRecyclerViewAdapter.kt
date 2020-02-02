@@ -5,16 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.databinding.CarItemBinding
 import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
 /**
- * [RecyclerView.Adapter] that can display a [Car], Has a reference to the [MainActivityViewModel]
+ * [RecyclerView.Adapter] that can display a [CarUiModel], Has a reference to the [MainActivityViewModel]
  * to send actions back to it.
  */
 class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
-    ListAdapter<Car, CarRecyclerViewAdapter.ViewHolder>(CarDiffCallBack()) {
+    ListAdapter<CarUiModel, CarRecyclerViewAdapter.ViewHolder>(CarDiffCallBack()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -29,7 +28,7 @@ class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
     class ViewHolder private constructor(val binding: CarItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: MainActivityViewModel, item: Car) {
+        fun bind(viewModel: MainActivityViewModel, item: CarUiModel) {
 
             binding.viewmodel = viewModel
             binding.car = item
@@ -53,12 +52,12 @@ class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
  * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
-class CarDiffCallBack : DiffUtil.ItemCallback<Car>() {
-    override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean {
-        return oldItem.carId == newItem.carId
+class CarDiffCallBack : DiffUtil.ItemCallback<CarUiModel>() {
+    override fun areItemsTheSame(oldItem: CarUiModel, newItem: CarUiModel): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Car, newItem: Car): Boolean {
+    override fun areContentsTheSame(oldItem: CarUiModel, newItem: CarUiModel): Boolean {
         return oldItem == newItem
     }
 }

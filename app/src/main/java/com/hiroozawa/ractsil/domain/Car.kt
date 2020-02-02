@@ -11,7 +11,7 @@ data class Car(
     val transmission: Transmission = Transmission.UNKNOWN,
     val licensePlate: LicencePlate = LicencePlate(UNKNOWN),
     val innerCleanliness: InnerCleanliness = InnerCleanliness.UNKNOWN,
-    val carImageUrl: CarImage = CarImage(UNKNOWN)
+    val carImage: CarImage = CarImage(UNKNOWN)
 )
 
 const val UNKNOWN = "UNKNOWN"

@@ -108,7 +108,7 @@ class CarDataMapperTest() {
         val car = CarDataMapper(carResponse.toList()).first()
 
         //then
-        assertThat(Transmission.AUTOMATIC, IsEqual(car.transmission))
+        assertThat(Transmission.AUTO, IsEqual(car.transmission))
     }
 
     @Test
@@ -150,7 +150,7 @@ class CarDataMapperTest() {
         val car = CarDataMapper(carResponse.toList()).first()
 
         //then
-        assertThat(carImageUrl, IsEqual(car.carImageUrl.url))
+        assertThat(carImageUrl, IsEqual(car.carImage.url))
     }
 
     private fun CarResponse.toList() = listOf(this)

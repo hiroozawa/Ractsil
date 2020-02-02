@@ -33,7 +33,6 @@ class MainActivityViewModelTest {
         val carRepository = FakeCarRepository()
         viewModel = MainActivityViewModel(carRepository)
 
-
         // Then progress indicator is shown
         assertTrue(LiveDataTestUtil.getValue(viewModel.dataLoading))
 
@@ -44,7 +43,7 @@ class MainActivityViewModelTest {
         assertFalse(LiveDataTestUtil.getValue(viewModel.dataLoading))
 
         // And data correctly loaded
-        assertThat(LiveDataTestUtil.getValue(viewModel.cars).size, IsEqual(4))
+        assertThat(LiveDataTestUtil.getValue(viewModel.carsUiModel).size, IsEqual(4))
     }
 
     @ExperimentalCoroutinesApi

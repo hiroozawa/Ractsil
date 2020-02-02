@@ -13,7 +13,7 @@
 
         <variable
             name="car"
-            type="com.hiroozawa.ractsil.domain.Car" />
+            type="com.hiroozawa.ractsil.ui.list.CarUiModel" />
 
     </data>
 
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="center"
-                app:image="@{car.carImageUrl}"
+                app:image="@{car.imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="w,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{car.owner}"
+                android:text="@{car.ownerName}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
-                android:text="@{car.make}"
+                android:text="@{car.makeName}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/model_value"
                 app:layout_constraintStart_toEndOf="@+id/model_value"
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{car.model.modelName}"
+                android:text="@{car.modelName}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@id/model_label"
                 app:layout_constraintStart_toEndOf="@+id/model_label"
@@ -129,13 +129,13 @@
                 android:id="@+id/fuel_type_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@{String.valueOf(car.fuel.fuelTypeType)}"
+                android:paddingStart="8dp"
+                android:text="@{car.fuelType}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/fuel_type_label"
-                app:layout_constraintStart_toEndOf="@+id/fuel_type_label"
+                app:layout_constraintStart_toEndOf="@+id/fuel_level_value"
                 app:layout_constraintTop_toTopOf="@+id/fuel_type_label"
-                tools:text="P" />
+                tools:text="Petrol" />
 
 
             <TextView
@@ -143,12 +143,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
-                android:text="@{String.valueOf(car.fuel.fuelLevel)}"
+                android:text="@{car.fuelLevel}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/fuel_type_value"
-                app:layout_constraintStart_toEndOf="@+id/fuel_type_value"
+                app:layout_constraintStart_toEndOf="@+id/fuel_type_label"
                 app:layout_constraintTop_toTopOf="@+id/fuel_type_value"
-                tools:text="0.8" />
+                tools:text="80%" />
 
             <TextView
                 android:id="@+id/transmission_label"
@@ -165,12 +165,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{String.valueOf(car.transmission)}"
+                android:text="@{car.transmission}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintBottom_toBottomOf="@+id/transmission_label"
                 app:layout_constraintStart_toEndOf="@+id/transmission_label"
                 app:layout_constraintTop_toTopOf="@+id/transmission_label"
-                tools:text="M" />
+                tools:text="Manual" />
 
             <TextView
                 android:id="@+id/inner_cleanliness_label"
@@ -189,7 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{String.valueOf(car.innerCleanliness)}"
+                android:text="@{car.innerCleanliness}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintStart_toEndOf="@+id/inner_cleanliness_label"
                 app:layout_constraintTop_toTopOf="@+id/inner_cleanliness_label"

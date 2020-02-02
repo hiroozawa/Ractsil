@@ -71,9 +71,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 map.addMarker(it)
             }
 
-            val cameraUpdate = CameraUpdateFactory
-                .newLatLngBounds(boundsBuilder.build(), 0)
-            map.moveCamera(cameraUpdate)
+            if(carList.isNotEmpty()){
+                val cameraUpdate = CameraUpdateFactory
+                    .newLatLngBounds(boundsBuilder.build(), 0)
+                map.moveCamera(cameraUpdate)
+            }
+
         }
 
     override fun onInfoWindowClick(marker: Marker) {
