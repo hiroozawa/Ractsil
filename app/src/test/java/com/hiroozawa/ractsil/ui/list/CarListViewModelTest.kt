@@ -132,4 +132,18 @@ class CarListViewModelTest {
         // Error occurred, list should be still empty
         assertThat(LiveDataTestUtil.getValue(viewModel.carsUiModel).size, IsEqual(0))
     }
+
+    @Test
+    fun `openCarEvent should send an event with carId`() {
+        // given
+        val carId = "ABCD"
+        val carRepository = FakeCarRepository()
+        viewModel = CarListViewModel(carRepository)
+        // when
+        viewModel.openCarEvent(carId)
+
+        // then
+        val errorEvent = LiveDataTestUtil.getValue(viewModel.openCarMapEvent)
+        assertThat(errorEvent.getContentIfNotHandled(), IsEqual(carId))
+    }
 }
