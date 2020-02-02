@@ -18,7 +18,7 @@ package com.hiroozawa.ractsil.ui.util
 import androidx.test.espresso.IdlingResource
 
 /**
- * Contains a static reference to [IdlingResource], only available in the 'mock' build type.
+ * Contains a static reference to [IdlingResource]
  */
 object EspressoIdlingResource {
 
