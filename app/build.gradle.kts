@@ -34,7 +34,7 @@ android {
     buildTypes {
         getByName("release") {
             buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

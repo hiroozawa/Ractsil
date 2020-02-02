@@ -1,5 +1,8 @@
 package com.hiroozawa.ractsil.data.remote
 
+import androidx.annotation.Keep
+
+@Keep
 data class CarResponse(
     val id: String = "",
     val modelIdentifier: String = "",
