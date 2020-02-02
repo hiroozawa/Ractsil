@@ -43,8 +43,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
         getByName("debug") {
-            buildConfigField("String", "SERVER_URL", "\"http://127.0.0.1:8080\"")
-//            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
+            buildConfigField("String", "SERVER_URL", "\"https://cdn.sixt.io/\"")
             isMinifyEnabled = false
             isDebuggable = true
         }

@@ -1,14 +1,17 @@
-package com.hiroozawa.ractsil.di
+package com.hiroozawa.ractsil
 
 import android.content.Context
-import com.hiroozawa.ractsil.RactsilApplication
-import com.hiroozawa.ractsil.data.remote.RemoteConfigModule
 import com.hiroozawa.ractsil.data.remote.RemoteDataModule
+import com.hiroozawa.ractsil.di.ApplicationComponent
+import com.hiroozawa.ractsil.di.CarListModule
+import com.hiroozawa.ractsil.di.CarMapModule
+import com.hiroozawa.ractsil.di.RepositoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
+
 
 /**
  * Main component for the application.
@@ -16,7 +19,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        RemoteConfigModule::class,
+        FakeRemoteConfigModule::class,
         RemoteDataModule::class,
         RepositoryModule::class,
         CarListModule::class,
@@ -24,10 +27,10 @@ import javax.inject.Singleton
         AndroidInjectionModule::class
     ]
 )
-interface ApplicationComponent : AndroidInjector<RactsilApplication> {
+interface TestApplicationComponent : AndroidInjector<TestRactsilApplication> {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance applicationContext: Context): ApplicationComponent
+        fun create(@BindsInstance applicationContext: Context): TestApplicationComponent
     }
 }

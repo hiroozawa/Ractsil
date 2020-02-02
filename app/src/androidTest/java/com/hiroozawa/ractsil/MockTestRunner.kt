@@ -13,6 +13,6 @@ class MockTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
-        return super.newApplication(cl, RactsilApplication::class.java.name, context)
+        return super.newApplication(cl, TestRactsilApplication::class.java.name, context)
     }
 }

@@ -13,6 +13,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.hiroozawa.ractsil.DaggerTestApplicationRule
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.ui.MainActivity
 import com.hiroozawa.ractsil.ui.util.*
@@ -30,6 +31,9 @@ class CarListFragmentTest {
     @JvmField
     @Rule
     val activityTestRule = ActivityTestRule(MainActivity::class.java, true, false)
+
+    @get:Rule
+    val rule = DaggerTestApplicationRule()
 
     // An Idling Resource that waits for Data Binding to have no pending bindings
     private val dataBindingIdlingResource = DataBindingIdlingResource()

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -26,10 +27,11 @@ object RemoteDataModule {
     @Provides
     fun provideRetrofit(
         okhttpClient: OkHttpClient,
-        converterFactory: GsonConverterFactory
+        converterFactory: GsonConverterFactory,
+        @Named("SERVER_URL") serverUrl: String
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.SERVER_URL)
+            .baseUrl(serverUrl)
             .callFactory(okhttpClient)
             .addConverterFactory(converterFactory)
             .build()
