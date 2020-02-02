@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_car_list">
         <action
             android:id="@+id/action_navigation_list_to_navigation_map"
-            app:destination="@id/navigation_map" />
+            />
         <argument
             android:name="carId"
             android:defaultValue="@null"
@@ -23,9 +23,6 @@
         android:name="com.hiroozawa.ractsil.ui.map.CarMapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_map">
-        <action
-            android:id="@+id/action_navigation_map_to_navigation_list"
-            app:destination="@id/navigation_list" />
         <argument
             android:name="carId"
             android:defaultValue="@null"

@@ -4,16 +4,16 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.matcher.ViewMatchers
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.ui.FakeCarRepository
-import com.hiroozawa.ractsil.ui.list.CarListViewModel
 import com.hiroozawa.ractsil.util.LiveDataTestUtil
 import com.hiroozawa.ractsil.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.core.IsEqual
-import org.junit.Assert.*
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
-class CarMapViewModelTest{
+class CarMapViewModelTest {
     // Subject under test
     private lateinit var viewModel: CarMapViewModel
 
