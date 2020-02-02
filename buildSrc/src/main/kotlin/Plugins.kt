@@ -3,4 +3,5 @@ object Plugins {
     const val kotlinAndroid = "android"
     const val kotlinAndroidExtension = "android.extensions"
     const val kotlinKapt = "kapt"
+    const val safeArgs = "androidx.navigation.safeargs"
 }

@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
@@ -80,7 +82,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
 
     override fun onInfoWindowClick(marker: Marker) {
-        Toast.makeText(this.context, "Marker ${marker.title} was clicked", Toast.LENGTH_SHORT)
-            .show()
+        findNavController().navigate(MapFragmentDirections.actionNavigationMapToNavigationList())
     }
 }

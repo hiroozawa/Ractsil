@@ -30,8 +30,6 @@
                 android:id="@+id/carContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
                 android:orientation="vertical">
 
 
@@ -40,8 +38,8 @@
                     android:name="com.hiroozawa.ractsil.ui.list.CarListFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
                     android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
                     app:items="@{viewmodel.carsUiModel}"
                     app:layoutManager="LinearLayoutManager"
@@ -57,14 +55,24 @@
                     android:orientation="vertical"
                     android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}">
 
+                    <ImageView
+                        android:id="@+id/error_image"
+                        android:src="@drawable/ic_error"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/empty_message"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginBottom="@dimen/list_item_padding"
+                        android:layout_gravity="center"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                         android:text="@string/no_cars" />
+
+
                 </LinearLayout>
             </RelativeLayout>
 

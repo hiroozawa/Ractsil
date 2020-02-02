@@ -43,8 +43,9 @@ class MainActivityViewModel @Inject constructor(
         wrapEspressoIdlingResource {
             viewModelScope.launch {
                 when (val result = carRepository.fetchCars()) {
-                    is Result.Success -> _carsUiModel.value = CarUiModelMapper(result.data).also {
-                        Log.e("HIROTEST", it.toString())
+                    is Result.Success ->{
+                        _carsUiModel.value = CarUiModelMapper(result.data)
+                        _cars.value = result.data
                     }
                     is Result.Error -> _errorEvent.value = Event(R.string.error)
                 }

@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id(Plugins.androidApplication)
+    id(Plugins.safeArgs)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinAndroidExtension)
     kotlin(Plugins.kotlinKapt)

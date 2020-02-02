@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Classpaths.gradle_plugin)
         classpath(Classpaths.kotlin_gradle_plugin)
+        classpath(Classpaths.nav_safe_args)
     }
 }
 

@@ -18,4 +18,5 @@
     <string name="regular">Regular</string>
     <string name="clean">Clean</string>
     <string name="very_clean">Very clean</string>
+    <string name="map">Map</string>
 </resources>
