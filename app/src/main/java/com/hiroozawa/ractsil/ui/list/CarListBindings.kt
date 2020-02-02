@@ -11,13 +11,13 @@ import com.hiroozawa.ractsil.domain.Car
  * [BindingAdapter]s for the [Car]s list.
  */
 
-@BindingAdapter("app:items")
+@BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<CarUiModel>) {
     (listView.adapter as CarRecyclerViewAdapter).submitList(items)
 }
 
 
-@BindingAdapter("app:image")
+@BindingAdapter("image")
 fun setImage(imageView: ImageView, url: String) {
     imageView.load(url) {
         crossfade(true)
