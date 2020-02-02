@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
@@ -27,6 +26,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     OnInfoWindowClickListener {
 
     private val viewModel by activityViewModels<MainActivityViewModel>()
+    private val args: MapFragmentArgs by navArgs()
+
     private lateinit var map: GoogleMap
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,10 +74,32 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 map.addMarker(it)
             }
 
-            if(carList.isNotEmpty()){
-                val cameraUpdate = CameraUpdateFactory
-                    .newLatLngBounds(boundsBuilder.build(), 0)
-                map.moveCamera(cameraUpdate)
+
+            if (args.carId.isNullOrEmpty()) {
+                if (carList.isNotEmpty()) {
+                    val cameraUpdate = CameraUpdateFactory
+                        .newLatLngBounds(boundsBuilder.build(), 0)
+                    map.moveCamera(cameraUpdate)
+                }
+            } else {
+                if (carList.isNotEmpty()) {
+
+                    val car = carList.firstOrNull() { it.carId.id == args.carId }
+
+                    car?.let {
+
+                        val latl = LatLng(
+                            car.coordinate.latitude,
+                            car.coordinate.longitude
+                        )
+                        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+                            latl,
+                            15F
+                        )
+                        map.moveCamera(cameraUpdate)
+                    }
+
+                }
             }
 
         }

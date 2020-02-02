@@ -228,6 +228,7 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 android:layout_marginBottom="@dimen/default_margin"
                 android:text="@string/map"
+                android:onClick="@{() -> viewmodel.openCarEvent(car.id)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

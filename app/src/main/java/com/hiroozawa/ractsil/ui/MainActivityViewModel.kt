@@ -32,6 +32,9 @@ class MainActivityViewModel @Inject constructor(
         it.isEmpty()
     }
 
+    private val _openCarMapEvent = MutableLiveData<Event<String>>()
+    val openCarMapEvent: LiveData<Event<String>> = _openCarMapEvent
+
     init {
         load()
     }
@@ -42,7 +45,7 @@ class MainActivityViewModel @Inject constructor(
         wrapEspressoIdlingResource {
             viewModelScope.launch {
                 when (val result = carRepository.fetchCars(forceUpdate)) {
-                    is Result.Success ->{
+                    is Result.Success -> {
                         _carsUiModel.value = CarUiModelMapper(result.data)
                         _cars.value = result.data
                     }
@@ -55,5 +58,9 @@ class MainActivityViewModel @Inject constructor(
 
     fun refresh() {
         load(forceUpdate = true)
+    }
+
+    fun openCarEvent(carId: String) {
+        _openCarMapEvent.value = Event(carId)
     }
 }

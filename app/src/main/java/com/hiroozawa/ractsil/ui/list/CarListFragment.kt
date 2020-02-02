@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.hiroozawa.ractsil.databinding.FragmentCarListBinding
+import com.hiroozawa.ractsil.ui.EventObserver
 import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
 
@@ -30,14 +32,25 @@ class CarListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupListAdapter()
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+        setupListAdapter()
+        setupNavigation()
     }
 
     private fun setupListAdapter() {
         viewDataBinding.viewmodel?.let {
             viewDataBinding.carList.adapter = CarRecyclerViewAdapter(it)
         }
+    }
+
+    private fun setupNavigation() {
+        viewModel.openCarMapEvent.observe(this.viewLifecycleOwner, EventObserver { event ->
+            val actionNavigationListToNavigationMap =
+                CarListFragmentDirections.actionNavigationListToNavigationMap().apply {
+                    carId = event
+                }
+            findNavController().navigate(actionNavigationListToNavigationMap)
+        })
     }
 
 }
