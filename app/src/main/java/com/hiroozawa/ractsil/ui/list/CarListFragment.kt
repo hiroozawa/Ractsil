@@ -61,7 +61,7 @@ class CarListFragment : DaggerFragment() {
     }
 
     private fun setupSnackBar() {
-        viewDataBinding.root.setupSnackbar(
+        view?.setupSnackbar(
             this.viewLifecycleOwner,
             viewModel.errorEvent,
             Snackbar.LENGTH_LONG

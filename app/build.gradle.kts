@@ -135,7 +135,9 @@ dependencies {
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
     androidTestImplementation("androidx.test:rules:1.2.0")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:${Versions.okhttp}")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.2.0")
+    // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
+    debugImplementation("androidx.fragment:fragment-testing:1.2.0")
+    androidTestImplementation ("androidx.test.espresso:espresso-contrib:${Versions.espresso_core}")
 
     // Dagger
     implementation("com.google.dagger:dagger:${Versions.dagger}")

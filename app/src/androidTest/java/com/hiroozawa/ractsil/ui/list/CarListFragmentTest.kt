@@ -1,11 +1,15 @@
 package com.hiroozawa.ractsil.ui.list
 
-import androidx.annotation.StringRes
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
@@ -49,9 +53,10 @@ class CarListFragmentTest {
 
     @Test
     fun load_whenRepositoryReturnsData() {
-        // when
+        // given
         mockWebServer.dispatcher = SuccessDispatcher()
-        
+
+        // when
         launchActivity()
 
         // then
@@ -62,9 +67,10 @@ class CarListFragmentTest {
 
     @Test
     fun load_whenRepositoryIsEmpty() {
-        // when
+        // given
         mockWebServer.dispatcher = EmptyDispatcher()
 
+        // when
         launchActivity()
 
         // then
@@ -74,14 +80,46 @@ class CarListFragmentTest {
 
     @Test
     fun load_whenRepositoryReturnsError() {
-        // when
+        // given
         mockWebServer.dispatcher = ErrorDispatcher()
 
+        // when
         launchActivity()
 
         // then
         onView(withId(R.id.emptyLayout))
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun navigate_whenClicksOnMapButton() {
+        // given
+        mockWebServer.dispatcher = SuccessDispatcher()
+
+        // when
+        launchActivity()
+
+        onView(withId(R.id.car_list))
+            .perform(
+                RecyclerViewActions
+                    .actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                        0,
+                        clickOnViewChild(R.id.navigate_map_button)
+                    )
+            )
+
+        // then
+        onView(withId(R.id.map))
+            .check(matches(isDisplayed()))
+    }
+
+    private fun clickOnViewChild(viewId: Int) = object : ViewAction {
+        override fun getConstraints() = null
+
+        override fun getDescription() = "Click on a child view with specified id."
+
+        override fun perform(uiController: UiController, view: View) =
+            click().perform(uiController, view.findViewById<View>(viewId))
     }
 
     private fun launchActivity(): ActivityScenario<MainActivity>? {

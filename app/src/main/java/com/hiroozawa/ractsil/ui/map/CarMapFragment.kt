@@ -18,8 +18,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.Car
+import com.hiroozawa.ractsil.ui.util.setupSnackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -36,18 +38,28 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupSnackBar()
+        setupMap()
+    }
+
+    private fun setupMap() {
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
     }
 
-
+    private fun setupSnackBar() {
+        view?.setupSnackbar(
+            this.viewLifecycleOwner,
+            viewModel.errorEvent,
+            Snackbar.LENGTH_LONG
+        )
+    }
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
@@ -55,8 +67,6 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
 
         viewModel.cars.observe(this, Observer(addListToMakers()))
     }
-
-
     private fun addListToMakers(): (List<Car>) -> Unit =
         { carList ->
 
@@ -108,6 +118,5 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
         }
 
     override fun onInfoWindowClick(marker: Marker) {
-        findNavController().navigate(CarMapFragmentDirections.actionNavigationMapToNavigationList())
     }
 }
