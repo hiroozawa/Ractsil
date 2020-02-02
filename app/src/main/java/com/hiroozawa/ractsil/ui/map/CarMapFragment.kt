@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,13 +20,16 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.Car
-import com.hiroozawa.ractsil.ui.MainActivityViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class MapFragment : Fragment(), OnMapReadyCallback,
+class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
     OnInfoWindowClickListener {
 
-    private val viewModel by activityViewModels<MainActivityViewModel>()
-    private val args: MapFragmentArgs by navArgs()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<CarMapViewModel> { viewModelFactory }
+    private val args: CarMapFragmentArgs by navArgs()
 
     private lateinit var map: GoogleMap
     override fun onCreateView(
@@ -105,6 +108,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
 
     override fun onInfoWindowClick(marker: Marker) {
-        findNavController().navigate(MapFragmentDirections.actionNavigationMapToNavigationList())
+        findNavController().navigate(CarMapFragmentDirections.actionNavigationMapToNavigationList())
     }
 }

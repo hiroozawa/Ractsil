@@ -1,27 +1,18 @@
 package com.hiroozawa.ractsil.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.snackbar.Snackbar
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.databinding.ActivityMainBinding
-import com.hiroozawa.ractsil.ui.util.setupSnackbar
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
 
-class MainActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
+class MainActivity : AppCompatActivity() {
 
     private lateinit var viewDataBinding: ActivityMainBinding
 
@@ -33,7 +24,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
         with(viewDataBinding) {
             navView.setupWithNavController(navController)
-            root.setupSnackbar(this@MainActivity, viewModel.errorEvent, Snackbar.LENGTH_LONG)
         }
     }
 

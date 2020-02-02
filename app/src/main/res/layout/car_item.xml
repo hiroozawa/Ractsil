@@ -9,7 +9,7 @@
 
         <variable
             name="viewmodel"
-            type="com.hiroozawa.ractsil.ui.MainActivityViewModel" />
+            type="com.hiroozawa.ractsil.ui.list.CarListViewModel" />
 
         <variable
             name="car"

@@ -1,13 +1,11 @@
 package com.hiroozawa.ractsil.ui.list
 
+import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.*
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
@@ -20,8 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.lang.Error
-import java.util.regex.Pattern.matches
+
 
 @RunWith(AndroidJUnit4::class)
 class CarListFragmentTest {
@@ -38,6 +35,7 @@ class CarListFragmentTest {
     @Before
     fun before() {
         mockWebServer.start(8080)
+
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
         IdlingRegistry.getInstance().register(dataBindingIdlingResource)
     }
@@ -59,10 +57,7 @@ class CarListFragmentTest {
         // then
         onView(withId(R.id.car_list))
             .check(matches(isDisplayed()))
-        onView(withText("Vanessa"))
-            .check(matches(isDisplayed()))
-        onView(withText("Regine"))
-            .check(matches(isDisplayed()))
+            .check(matches(hasChildCount(2)))
     }
 
     @Test
@@ -87,10 +82,7 @@ class CarListFragmentTest {
         // then
         onView(withId(R.id.emptyLayout))
             .check(matches(isDisplayed()))
-        onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText(R.string.error)))
     }
-
 
     private fun launchActivity(): ActivityScenario<MainActivity>? {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)

@@ -1,25 +1,21 @@
-package com.hiroozawa.ractsil.ui
+package com.hiroozawa.ractsil.ui.list
 
 import androidx.lifecycle.*
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
-import com.hiroozawa.ractsil.domain.Car
-import com.hiroozawa.ractsil.ui.list.CarUiModel
-import com.hiroozawa.ractsil.ui.list.CarUiModelMapper
+import com.hiroozawa.ractsil.ui.Event
 import com.hiroozawa.ractsil.ui.util.wrapEspressoIdlingResource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivityViewModel @Inject constructor(
+
+class CarListViewModel @Inject constructor(
     private val carRepository: CarRepository
 ) : ViewModel() {
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
-
-    private val _cars = MutableLiveData<List<Car>>().apply { value = emptyList() }
-    val cars: LiveData<List<Car>> = _cars
 
     private val _carsUiModel = MutableLiveData<List<CarUiModel>>()
         .apply { value = emptyList() }
@@ -47,7 +43,6 @@ class MainActivityViewModel @Inject constructor(
                 when (val result = carRepository.fetchCars(forceUpdate)) {
                     is Result.Success -> {
                         _carsUiModel.value = CarUiModelMapper(result.data)
-                        _cars.value = result.data
                     }
                     is Result.Error -> _errorEvent.value = Event(R.string.error)
                 }

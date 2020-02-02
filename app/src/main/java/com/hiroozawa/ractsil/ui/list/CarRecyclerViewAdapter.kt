@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hiroozawa.ractsil.databinding.CarItemBinding
-import com.hiroozawa.ractsil.ui.MainActivityViewModel
 
 /**
- * [RecyclerView.Adapter] that can display a [CarUiModel], Has a reference to the [MainActivityViewModel]
+ * [RecyclerView.Adapter] that can display a [CarUiModel], Has a reference to the [CarListViewModel]
  * to send actions back to it.
  */
-class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
+class CarRecyclerViewAdapter(private val viewModel: CarListViewModel) :
     ListAdapter<CarUiModel, CarRecyclerViewAdapter.ViewHolder>(CarDiffCallBack()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -28,7 +27,7 @@ class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
     class ViewHolder private constructor(val binding: CarItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: MainActivityViewModel, item: CarUiModel) {
+        fun bind(viewModel: CarListViewModel, item: CarUiModel) {
 
             binding.viewmodel = viewModel
             binding.car = item
@@ -46,12 +45,6 @@ class CarRecyclerViewAdapter(private val viewModel: MainActivityViewModel) :
     }
 }
 
-/**
- * Callback for calculating the diff between two non-null items in a list.
- *
- * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
- * list that's been passed to `submitList`.
- */
 class CarDiffCallBack : DiffUtil.ItemCallback<CarUiModel>() {
     override fun areItemsTheSame(oldItem: CarUiModel, newItem: CarUiModel): Boolean {
         return oldItem.id == newItem.id

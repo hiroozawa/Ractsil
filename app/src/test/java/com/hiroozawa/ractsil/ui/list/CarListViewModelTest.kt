@@ -1,8 +1,9 @@
-package com.hiroozawa.ractsil.ui
+package com.hiroozawa.ractsil.ui.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import com.hiroozawa.ractsil.R
+import com.hiroozawa.ractsil.ui.FakeCarRepository
 import com.hiroozawa.ractsil.util.LiveDataTestUtil
 import com.hiroozawa.ractsil.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,10 +13,10 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
-class MainActivityViewModelTest {
+class CarListViewModelTest {
 
     // Subject under test
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModel: CarListViewModel
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -32,7 +33,7 @@ class MainActivityViewModelTest {
 
         // Trigger loading of cars
         val carRepository = FakeCarRepository()
-        viewModel = MainActivityViewModel(carRepository)
+        viewModel = CarListViewModel(carRepository)
 
         // Then progress indicator is shown
         assertTrue(LiveDataTestUtil.getValue(viewModel.dataLoading))
@@ -55,7 +56,7 @@ class MainActivityViewModelTest {
 
         // Trigger loading of cars
         val carRepository = FakeCarRepository(null)
-        viewModel = MainActivityViewModel(carRepository)
+        viewModel = CarListViewModel(carRepository)
 
         // Then progress indicator is shown
         assertTrue(LiveDataTestUtil.getValue(viewModel.dataLoading))
@@ -80,7 +81,7 @@ class MainActivityViewModelTest {
     fun `refresh should trigger loading and retrieve data correctly`() {
         // Trigger loading of cars
         val carRepository = FakeCarRepository()
-        viewModel = MainActivityViewModel(carRepository)
+        viewModel = CarListViewModel(carRepository)
 
         // Pause dispatcher so we can verify initial values
         mainCoroutineRule.pauseDispatcher()
@@ -106,7 +107,7 @@ class MainActivityViewModelTest {
     fun `refresh should trigger loading and trigger error`() {
         // Trigger loading of cars
         val carRepository = FakeCarRepository(null)
-        viewModel = MainActivityViewModel(carRepository)
+        viewModel = CarListViewModel(carRepository)
 
         // Pause dispatcher so we can verify initial values
         mainCoroutineRule.pauseDispatcher()

@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.hiroozawa.ractsil.databinding.FragmentCarListBinding
 import com.hiroozawa.ractsil.ui.EventObserver
-import com.hiroozawa.ractsil.ui.MainActivityViewModel
+import com.hiroozawa.ractsil.ui.util.setupSnackbar
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 
-class CarListFragment : Fragment() {
+class CarListFragment : DaggerFragment() {
 
-    private val viewModel by activityViewModels<MainActivityViewModel>()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<CarListViewModel> { viewModelFactory }
 
     private lateinit var viewDataBinding: FragmentCarListBinding
 
@@ -35,6 +41,7 @@ class CarListFragment : Fragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupListAdapter()
         setupNavigation()
+        setupSnackBar()
     }
 
     private fun setupListAdapter() {
@@ -51,5 +58,13 @@ class CarListFragment : Fragment() {
                 }
             findNavController().navigate(actionNavigationListToNavigationMap)
         })
+    }
+
+    private fun setupSnackBar() {
+        viewDataBinding.root.setupSnackbar(
+            this.viewLifecycleOwner,
+            viewModel.errorEvent,
+            Snackbar.LENGTH_LONG
+        )
     }
 }

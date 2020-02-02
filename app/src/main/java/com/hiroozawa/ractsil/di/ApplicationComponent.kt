@@ -17,7 +17,8 @@ import javax.inject.Singleton
     modules = [
         RemoteDataModule::class,
         RepositoryModule::class,
-        RactsilModule::class,
+        CarListModule::class,
+        CarMapModule::class,
         AndroidInjectionModule::class
     ]
 )
