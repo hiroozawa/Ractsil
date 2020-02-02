@@ -5,7 +5,7 @@
     <string name="no_cars">No cars were listed!</string>
     <string name="make">Make: </string>
     <string name="model">Model: </string>
-    <string name="licence_plate">Licence Plate: </string>
+    <string name="owner">Owner: </string>
     <string name="fuel">Fuel: </string>
     <string name="fuel_level">Fuel level: </string>
     <string name="transmission">Transmission: </string>
