@@ -16,7 +16,6 @@ fun View.setupSnackbar(
     snackbarEvent: LiveData<Event<Int>>,
     timeLength: Int
 ) {
-
     snackbarEvent.observe(lifecycleOwner, Observer { event ->
         event.getContentIfNotHandled()?.let {
             showSnackbar(context.getString(it), timeLength)
@@ -33,7 +32,6 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
             override fun onShown(sb: Snackbar?) {
                 EspressoIdlingResource.increment()
             }
-
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 EspressoIdlingResource.decrement()
             }
