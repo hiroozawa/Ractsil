@@ -1,6 +1,5 @@
 package com.hiroozawa.ractsil.ui
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.data.CarRepository
@@ -37,12 +36,12 @@ class MainActivityViewModel @Inject constructor(
         load()
     }
 
-    private fun load() {
+    private fun load(forceUpdate: Boolean = false) {
         _dataLoading.value = true
 
         wrapEspressoIdlingResource {
             viewModelScope.launch {
-                when (val result = carRepository.fetchCars()) {
+                when (val result = carRepository.fetchCars(forceUpdate)) {
                     is Result.Success ->{
                         _carsUiModel.value = CarUiModelMapper(result.data)
                         _cars.value = result.data
@@ -55,6 +54,6 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun refresh() {
-        load()
+        load(forceUpdate = true)
     }
 }

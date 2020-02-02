@@ -2,9 +2,10 @@ package com.hiroozawa.ractsil.data
 
 import com.hiroozawa.ractsil.data.remote.CarRemoteDataSource
 import com.hiroozawa.ractsil.data.remote.CarResponse
+import java.util.*
 
 class FakeCarRemoteDataSource(
-    private val responseList: List<CarResponse>? = createFakeCarData()
+    val responseList: MutableList<CarResponse>? = createFakeCarData()
 ) : CarRemoteDataSource {
 
     override suspend fun fetchCars(): List<CarResponse> {
@@ -13,11 +14,11 @@ class FakeCarRemoteDataSource(
     }
 }
 
-private fun createFakeCarData(): List<CarResponse>? =
+private fun createFakeCarData(): MutableList<CarResponse> =
     listOf(0, 1, 2, 3)
         .map {
             CarResponse(
                 id = "$it",
                 name = "Car $it"
             )
-        }
+        }.toMutableList()

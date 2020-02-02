@@ -14,7 +14,7 @@ import com.hiroozawa.ractsil.domain.Owner
 class FakeCarRepository(
     private val carList: List<Car>? = createFakeCarData()
 ) : CarRepository {
-    override suspend fun fetchCars(): Result<List<Car>> {
+    override suspend fun fetchCars(forceUpdate: Boolean): Result<List<Car>> {
         carList?.let {
             return Result.Success(carList)
         }

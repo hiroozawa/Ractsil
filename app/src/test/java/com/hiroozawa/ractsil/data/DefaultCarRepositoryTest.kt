@@ -6,6 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.core.IsEqual
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -51,5 +52,33 @@ class DefaultCarRepositoryTest {
             val cars = carRepository.fetchCars()
 
             assertThat(cars, instanceOf(Result.Error::class.java))
+        }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `fetchCars should cache result at the consecutive non forceUpdate fetch`() =
+        runBlockingTest {
+
+            val cars = carRepository.fetchCars()
+            val cars2 = carRepository.fetchCars()
+
+            assertThat(cars, IsEqual(cars2))
+        }
+
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `fetchCars should not cache result when forceUpdate fetch`() =
+        runBlockingTest {
+
+            val cars = carRepository.fetchCars()
+
+            // Simulate a change in remote data source removing first item
+            remoteDataSource.responseList?.removeIf { it.id == "0" }
+
+            // Fetch again with forceUpdate
+            val cars2 = carRepository.fetchCars(true)
+
+            assertNotEquals(cars, cars2)
         }
 }
