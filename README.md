@@ -9,7 +9,7 @@
 Native android application that shows a list of cars and also shows them in a map.
 
 ### apk
-A apk can be downloaded [here](https://drive.google.com/open?id=1BHr_RzFMlmrzL0nzpRvR6wUlOEw92c5G)
+A apk can be downloaded [here](https://drive.google.com/open?id=1U2mRZsVCsjSiNDGXC4RpknmqtScHarmB)
 
 ### Libraries
 
