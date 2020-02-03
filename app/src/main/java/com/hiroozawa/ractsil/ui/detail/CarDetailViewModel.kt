@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
 import com.hiroozawa.ractsil.ui.model.CarUiModel
-import com.hiroozawa.ractsil.ui.model.CarUiModelMapper
+import com.hiroozawa.ractsil.ui.model.mappers.CarUiModelMapper
 import com.hiroozawa.ractsil.ui.util.wrapEspressoIdlingResource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +29,10 @@ class CarDetailViewModel @Inject constructor(
 
             viewModelScope.launch {
                 when (val result = carRepository.getCar(carId)) {
-                    is Result.Success -> _carsUiModel.value = CarUiModelMapper(result.data)
+                    is Result.Success -> _carsUiModel.value =
+                        CarUiModelMapper(
+                            result.data
+                        )
                     is Result.Error -> _error.value = true
                 }
             }

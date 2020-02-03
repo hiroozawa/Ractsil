@@ -1,10 +1,11 @@
-package com.hiroozawa.ractsil.ui.model
+package com.hiroozawa.ractsil.ui.model.mappers
 
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.Car
 import com.hiroozawa.ractsil.domain.FuelType
 import com.hiroozawa.ractsil.domain.InnerCleanliness
 import com.hiroozawa.ractsil.domain.Transmission
+import com.hiroozawa.ractsil.ui.model.CarUiModel
 import java.text.NumberFormat
 
 object CarUiModelMapper {

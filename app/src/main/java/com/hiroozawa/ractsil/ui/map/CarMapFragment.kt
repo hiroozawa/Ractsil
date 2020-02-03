@@ -14,13 +14,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import com.hiroozawa.ractsil.R
-import com.hiroozawa.ractsil.domain.Car
+import com.hiroozawa.ractsil.databinding.FragmentMapBinding
+import com.hiroozawa.ractsil.ui.model.CarMapUiState
 import com.hiroozawa.ractsil.ui.util.setupSnackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -32,19 +30,27 @@ class CarMapFragment() : DaggerFragment(), OnMapReadyCallback, OnMarkerClickList
     private val viewModel by viewModels<CarMapViewModel> { viewModelFactory }
     private val args: CarMapFragmentArgs by navArgs()
 
+    private lateinit var viewDataBinding: FragmentMapBinding
     private lateinit var map: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        viewDataBinding = FragmentMapBinding.inflate(inflater, container, false)
+            .apply {
+                viewmodel = viewModel
+            }
+        return viewDataBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupSnackBar()
         setupMap()
+
+        viewModel.load(args.carId)
     }
 
     private fun setupMap() {
@@ -63,61 +69,21 @@ class CarMapFragment() : DaggerFragment(), OnMapReadyCallback, OnMarkerClickList
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
         map.setOnMarkerClickListener(this)
 
-        viewModel.cars.observe(this, Observer(addListToMakers()))
+        viewModel.carMapState.observe(this.viewLifecycleOwner, Observer { carMapState ->
+
+            if (carMapState is CarMapUiState.MapUiData) {
+                map.clear()
+                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(carMapState.latLngBounds, 0)
+                map.moveCamera(cameraUpdate)
+
+                carMapState.carMarkers.forEach { carMarkers ->
+                    map.addMarker(carMarkers.markerOptions).tag = carMarkers.carId
+                }
+            }
+        })
     }
-
-    private fun addListToMakers(): (List<Car>) -> Unit =
-        { carList ->
-
-            map.clear()
-            val boundsBuilder = LatLngBounds.Builder()
-
-            carList.map { car ->
-                val latLng = LatLng(car.coordinate.latitude, car.coordinate.longitude)
-                boundsBuilder.include(latLng)
-
-                val markerOpt = MarkerOptions()
-                    .position(latLng)
-
-                val marker = map.addMarker(markerOpt)
-
-                marker.tag = car.carId.id
-
-            }
-
-
-            if (args.carId.isNullOrEmpty()) {
-                if (carList.isNotEmpty()) {
-                    val cameraUpdate = CameraUpdateFactory
-                        .newLatLngBounds(boundsBuilder.build(), 0)
-                    map.moveCamera(cameraUpdate)
-                }
-            } else {
-                if (carList.isNotEmpty()) {
-
-                    val car = carList.firstOrNull() { it.carId.id == args.carId }
-
-                    car?.let {
-
-                        val latl = LatLng(
-                            car.coordinate.latitude,
-                            car.coordinate.longitude
-                        )
-                        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                            latl,
-                            15F
-                        )
-                        map.moveCamera(cameraUpdate)
-                    }
-
-                }
-            }
-
-        }
-
 
     override fun onMarkerClick(marker: Marker): Boolean {
         val carId = marker.tag as String

@@ -23,9 +23,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.hiroozawa.ractsil.ui.Event
 
 
-/**
- * Triggers a snackbar message when the value contained by snackbarTaskMessageLiveEvent is modified.
- */
 fun View.setupSnackbar(
     lifecycleOwner: LifecycleOwner,
     snackbarEvent: LiveData<Event<Int>>,

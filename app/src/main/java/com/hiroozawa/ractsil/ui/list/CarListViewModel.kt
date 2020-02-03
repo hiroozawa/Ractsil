@@ -6,7 +6,7 @@ import com.hiroozawa.ractsil.data.CarRepository
 import com.hiroozawa.ractsil.data.Result
 import com.hiroozawa.ractsil.ui.Event
 import com.hiroozawa.ractsil.ui.model.CarUiModel
-import com.hiroozawa.ractsil.ui.model.CarUiModelMapper
+import com.hiroozawa.ractsil.ui.model.mappers.CarUiModelMapper
 import com.hiroozawa.ractsil.ui.util.wrapEspressoIdlingResource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -43,7 +43,11 @@ class CarListViewModel @Inject constructor(
         wrapEspressoIdlingResource {
             viewModelScope.launch {
                 when (val result = carRepository.fetchCars(forceUpdate)) {
-                    is Result.Success -> _carsUiModel.value = result.data.map { CarUiModelMapper(it) }
+                    is Result.Success -> _carsUiModel.value = result.data.map {
+                        CarUiModelMapper(
+                            it
+                        )
+                    }
                     is Result.Error -> _errorEvent.value = Event(R.string.error)
                 }
                 _dataLoading.value = false
