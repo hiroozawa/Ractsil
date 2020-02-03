@@ -1,4 +1,4 @@
-package com.hiroozawa.ractsil.ui.list
+package com.hiroozawa.ractsil.ui.model
 
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.Car
@@ -8,7 +8,7 @@ import com.hiroozawa.ractsil.domain.Transmission
 import java.text.NumberFormat
 
 object CarUiModelMapper {
-    operator fun invoke(carList: List<Car>) = carList.map { car ->
+    operator fun invoke(car: Car) =
         CarUiModel(
             id = car.carId.id,
             ownerName = car.owner.name,
@@ -16,12 +16,20 @@ object CarUiModelMapper {
             modelName = car.model.modelName,
             makeName = car.make.name,
             licensePlate = car.licensePlate.code,
-            fuelLevel = mapFuelLevel(car.fuel.fuelLevel),
-            fuelType = mapFuelType(car.fuel.fuelType),
-            transmission = mapTransmission(car.transmission),
-            innerCleanliness = mapInnerCleanliness(car.innerCleanliness)
+            fuelLevel = mapFuelLevel(
+                car.fuel.fuelLevel
+            ),
+            fuelType = mapFuelType(
+                car.fuel.fuelType
+            ),
+            transmission = mapTransmission(
+                car.transmission
+            ),
+            innerCleanliness = mapInnerCleanliness(
+                car.innerCleanliness
+            )
         )
-    }
+
 
     private fun mapFuelLevel(fuelLevel: Float): String {
         val percentFormat = NumberFormat.getPercentInstance()

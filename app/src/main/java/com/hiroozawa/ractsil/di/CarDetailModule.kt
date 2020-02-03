@@ -3,25 +3,25 @@ package com.hiroozawa.ractsil.di
 import androidx.lifecycle.ViewModel
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelBuilder
 import com.hiroozawa.ractsil.di.viewmodel.ViewModelKey
-import com.hiroozawa.ractsil.ui.list.CarListFragment
-import com.hiroozawa.ractsil.ui.list.CarListViewModel
+import com.hiroozawa.ractsil.ui.detail.CarDetailDialogFragment
+import com.hiroozawa.ractsil.ui.detail.CarDetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class CarListModule {
+abstract class CarDetailModule {
 
     @ContributesAndroidInjector(
         modules = [
             ViewModelBuilder::class
         ]
     )
-    internal abstract fun carListFragment(): CarListFragment
+    internal abstract fun carDetailFragment(): CarDetailDialogFragment
 
     @Binds
     @IntoMap
-    @ViewModelKey(CarListViewModel::class)
-    internal abstract fun bindViewModel(viewModel: CarListViewModel): ViewModel
+    @ViewModelKey(CarDetailViewModel::class)
+    internal abstract fun bindViewModel(viewModel: CarDetailViewModel): ViewModel
 }

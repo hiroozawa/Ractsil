@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -25,8 +25,7 @@ import com.hiroozawa.ractsil.ui.util.setupSnackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
-    OnInfoWindowClickListener {
+class CarMapFragment() : DaggerFragment(), OnMapReadyCallback, OnMarkerClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -34,6 +33,7 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
     private val args: CarMapFragmentArgs by navArgs()
 
     private lateinit var map: GoogleMap
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,13 +60,15 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
             Snackbar.LENGTH_LONG
         )
     }
+
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        map.setOnInfoWindowClickListener(this)
+        map.setOnMarkerClickListener(this)
 
         viewModel.cars.observe(this, Observer(addListToMakers()))
     }
+
     private fun addListToMakers(): (List<Car>) -> Unit =
         { carList ->
 
@@ -77,14 +79,13 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
                 val latLng = LatLng(car.coordinate.latitude, car.coordinate.longitude)
                 boundsBuilder.include(latLng)
 
-                MarkerOptions()
+                val markerOpt = MarkerOptions()
                     .position(latLng)
-                    .title(car.owner.name)
-                    .snippet("Model: ${car.model.modelName}\n")
 
+                val marker = map.addMarker(markerOpt)
 
-            }.forEach {
-                map.addMarker(it)
+                marker.tag = car.carId.id
+
             }
 
 
@@ -117,6 +118,12 @@ class CarMapFragment : DaggerFragment(), OnMapReadyCallback,
 
         }
 
-    override fun onInfoWindowClick(marker: Marker) {
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        val carId = marker.tag as String
+        val navAction =
+            CarMapFragmentDirections.actionNavigationMapToCarDetailFragment(carId)
+        findNavController().navigate(navAction)
+        return false
     }
 }

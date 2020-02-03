@@ -21,6 +21,7 @@ import javax.inject.Singleton
         RepositoryModule::class,
         CarListModule::class,
         CarMapModule::class,
+        CarDetailModule::class,
         AndroidInjectionModule::class
     ]
 )

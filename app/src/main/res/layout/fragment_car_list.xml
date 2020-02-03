@@ -46,7 +46,6 @@
                     tools:context=".ui.list.CarListFragment"
                     tools:listitem="@layout/car_item" />
 
-
                 <LinearLayout
                     android:id="@+id/emptyLayout"
                     android:layout_width="wrap_content"
@@ -71,7 +70,6 @@
                         android:layout_gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                         android:text="@string/no_cars" />
-
 
                 </LinearLayout>
             </RelativeLayout>

@@ -19,6 +19,11 @@ class DefaultCarRepository @Inject constructor(
 ) : CarRepository {
     private var cache = Result.Success(emptyList<Car>())
 
+    /**
+     *  Fetches a list of cars
+     *  @param forceUpdate when true, it will always fetch from remote, when false it only fetches
+     *  when cache is empty.
+     * */
     override suspend fun fetchCars(forceUpdate: Boolean): Result<List<Car>> =
         withContext(ioDispatcher) {
             try {
@@ -43,6 +48,24 @@ class DefaultCarRepository @Inject constructor(
             .also {
                 cache = it
             }
+
+    /**
+     *  Returns a car given an CarId, for now it only fetches from cache. For simplicity reasons we
+     *  didn't implement a concurrent map.
+     *  @param carID is the car if to look for in cache
+     * */
+    override suspend fun getCar(carID: String): Result<Car> = withContext(ioDispatcher) {
+        return@withContext cache.data
+            .firstOrNull { car ->
+                car.carId.id == carID
+            }.let { car ->
+                if (car == null) {
+                    Result.Error(Exception("Car not found in cache"))
+                } else {
+                    Result.Success(car)
+                }
+            }
+    }
 
 
 }

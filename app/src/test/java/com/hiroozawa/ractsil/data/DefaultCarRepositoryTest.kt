@@ -81,4 +81,32 @@ class DefaultCarRepositoryTest {
 
             assertNotEquals(cars, cars2)
         }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `getCar should return success when cache contains the car`() =
+        runBlockingTest {
+            val cars = carRepository.fetchCars()
+
+            val firstCar = (cars as Result.Success).data.first()
+
+            // Fetch again with forceUpdate
+            val car = carRepository.getCar(firstCar.carId.id)
+
+            assertThat(car, instanceOf(Result.Success::class.java))
+            val carData = (car as Result.Success).data
+            assertThat(carData, IsEqual(firstCar))
+        }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `getCar should return error when cache does not contain the requested car`() =
+        runBlockingTest {
+            val carID = "WRONG_ID"
+
+            // Fetch again with forceUpdate
+            val car = carRepository.getCar(carID)
+
+            assertThat(car, instanceOf(Result.Error::class.java))
+        }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hiroozawa.ractsil.databinding.CarItemBinding
+import com.hiroozawa.ractsil.ui.model.CarUiModel
 
 /**
  * [RecyclerView.Adapter] that can display a [CarUiModel], Has a reference to the [CarListViewModel]

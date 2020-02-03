@@ -10,9 +10,6 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
-/**
- * Dagger module for map feature
- */
 @Module
 abstract class CarMapModule {
 

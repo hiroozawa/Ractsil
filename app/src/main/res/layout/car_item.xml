@@ -13,7 +13,7 @@
 
         <variable
             name="car"
-            type="com.hiroozawa.ractsil.ui.list.CarUiModel" />
+            type="com.hiroozawa.ractsil.ui.model.CarUiModel" />
 
     </data>
 

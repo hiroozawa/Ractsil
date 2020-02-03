@@ -21,6 +21,11 @@ class FakeCarRepository(
 
         return Result.Error(Exception("Test repository exception"))
     }
+
+    override suspend fun getCar(carID: String): Result<Car> =
+        if (carID == "0") Result.Success(Car(carId = CarId((carID))))
+        else Result.Error(Exception("Test Repository exception"))
+
 }
 
 private fun createFakeCarData(): List<Car> =

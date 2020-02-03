@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.Car
+import com.hiroozawa.ractsil.ui.model.CarUiModel
 
 /**
  * [BindingAdapter]s for the [Car]s list.
