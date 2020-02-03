@@ -4,3 +4,26 @@
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.50-blue.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Repo Size](https://img.shields.io/github/repo-size/nuhkoca/market_tech_challenge)](https://github.com/hiroozawa/ractsil)
+
+
+Native android application that shows a list of cars and also shows them in a map.
+
+### apk
+A apk can be downloaded [here](https://drive.google.com/open?id=1BHr_RzFMlmrzL0nzpRvR6wUlOEw92c5G)
+
+### Libraries
+
+- Kotlin Coroutines - For writing asynchronous code and keeping the hard work off the main thread.
+- Retrofit2, OkHttp3 and Gson - For the api network calls and json serializatio. Also retrofit integrates nicely with coroutines.
+- Dagger Android - Used for constructing the dependency injection graph
+- Coil - An image loading library for Android backed by Kotlin Coroutines.
+- Architecture Components: Navigation with  safeargs, ViewModel, LiveData are used in this project
+- Espresso - For UI and navigation tests
+- MockWebserver - Makes mocking our api calls easy for integration tests
+
+### Architecture and Tests
+
+The project Ractsil uses a rather simple architecture based on architecture blueprints. The repository, viewmodels and data mappers are all unit tested. 
+Using Dagger, Espresso and MockWebServer we are able to make “end to end tests”, these tests reach from the API calls to the UI rendering and navigation. It also tests if all the dependency injection modules are setup correctly. 
+
+
