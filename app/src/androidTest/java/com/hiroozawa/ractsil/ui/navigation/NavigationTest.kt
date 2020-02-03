@@ -1,9 +1,10 @@
-package com.hiroozawa.ractsil.ui.list
+package com.hiroozawa.ractsil.ui.navigation
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
@@ -26,7 +27,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-class CarListFragmentTest {
+class NavigationTest {
 
     @JvmField
     @Rule
@@ -56,7 +57,7 @@ class CarListFragmentTest {
     }
 
     @Test
-    fun load_whenRepositoryReturnsData() {
+    fun navigate_clicksOnMapMenu() {
         // given
         mockWebServer.dispatcher = SuccessDispatcher()
 
@@ -64,45 +65,53 @@ class CarListFragmentTest {
         launchActivity()
 
         // then
-        onView(withId(R.id.car_list))
-            .check(matches(isDisplayed()))
-            .check(matches(hasChildCount(2)))
-    }
+        onView(withId(R.id.navigation_map)).perform(click())
 
-    @Test
-    fun load_whenRepositoryIsEmpty() {
-        // given
-        mockWebServer.dispatcher = EmptyDispatcher()
-
-        // when
-        launchActivity()
-
-        // then
-        onView(withText(R.string.no_cars))
+        onView((withId(R.id.map)))
             .check(matches(isDisplayed()))
     }
 
     @Test
-    fun load_whenRepositoryReturnsError() {
-        // given
-        mockWebServer.dispatcher = ErrorDispatcher()
-
-        // when
-        launchActivity()
-
-        // then
-        onView(withId(R.id.emptyLayout))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun navigate_whenClicksOnMapButton() {
+    fun navigate_clicksOnMapMenuThenClicksBackToList() {
         // given
         mockWebServer.dispatcher = SuccessDispatcher()
 
         // when
         launchActivity()
 
+        // then
+        onView(withId(R.id.navigation_list)).perform(click())
+        onView(withId(R.id.car_list)).perform(click())
+
+        onView((withId(R.id.car_list)))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun navigate_clicksOnMapMenuThenBackPress() {
+        // given
+        mockWebServer.dispatcher = SuccessDispatcher()
+
+        // when
+        launchActivity()
+
+        // then
+        onView(withId(R.id.navigation_map)).perform(click())
+        pressBack()
+
+        onView((withId(R.id.car_list)))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun navigate_clicksOnItemMapButtonThenBackPresses() {
+        // given
+        mockWebServer.dispatcher = SuccessDispatcher()
+
+        // when
+        launchActivity()
+
+        // then
         onView(withId(R.id.car_list))
             .perform(
                 RecyclerViewActions
@@ -112,9 +121,21 @@ class CarListFragmentTest {
                     )
             )
 
-        // then
-        onView(withId(R.id.map))
+        pressBack()
+
+        onView((withId(R.id.car_list)))
             .check(matches(isDisplayed()))
+    }
+
+
+
+    private fun clickOnViewChild(viewId: Int) = object : ViewAction {
+        override fun getConstraints() = null
+
+        override fun getDescription() = "Click on a child view with specified id."
+
+        override fun perform(uiController: UiController, view: View) =
+            click().perform(uiController, view.findViewById<View>(viewId))
     }
 
     private fun launchActivity(): ActivityScenario<MainActivity>? {

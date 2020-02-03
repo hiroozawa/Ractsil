@@ -3,7 +3,7 @@ package com.hiroozawa.ractsil.ui.list
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import com.hiroozawa.ractsil.R
 import com.hiroozawa.ractsil.domain.*
-import com.hiroozawa.ractsil.ui.model.CarUiModelMapper
+import com.hiroozawa.ractsil.ui.model.mappers.CarUiModelMapper
 import org.hamcrest.core.IsEqual
 import org.junit.Test
 
@@ -16,7 +16,8 @@ class CarUiModelMapperTest {
         val car = Car(carId = CarId(id))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.id, IsEqual(id))
@@ -29,7 +30,8 @@ class CarUiModelMapperTest {
         val car = Car(owner = Owner(ownerName))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.ownerName, IsEqual(ownerName))
@@ -42,7 +44,8 @@ class CarUiModelMapperTest {
         val car = Car(carImage = CarImage(carImageUrl))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.imageUrl, IsEqual(carImageUrl))
@@ -55,7 +58,8 @@ class CarUiModelMapperTest {
         val car = Car(model = Model(modelName = modelName))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.modelName, IsEqual(modelName))
@@ -68,7 +72,8 @@ class CarUiModelMapperTest {
         val car = Car(make = Make(makeName))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.makeName, IsEqual(makeName))
@@ -81,7 +86,8 @@ class CarUiModelMapperTest {
         val car = Car(licensePlate = LicencePlate(licensePlate))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.licensePlate, IsEqual(licensePlate))
@@ -94,7 +100,8 @@ class CarUiModelMapperTest {
         val car = Car(fuel = CarFuel(fuelLevel = fuelLevel))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.fuelLevel, IsEqual("80%"))
@@ -106,7 +113,8 @@ class CarUiModelMapperTest {
         val car = Car(fuel = CarFuel(fuelType = FuelType.PETROL))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.fuelType, IsEqual(R.string.petrol))
@@ -118,7 +126,8 @@ class CarUiModelMapperTest {
         val car = Car(fuel = CarFuel(fuelType = FuelType.DIESEL))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.fuelType, IsEqual(R.string.diesel))
@@ -130,7 +139,8 @@ class CarUiModelMapperTest {
         val car = Car(fuel = CarFuel(fuelType = FuelType.UNKNOWN))
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.fuelType, IsEqual(R.string.unknown))
@@ -142,7 +152,8 @@ class CarUiModelMapperTest {
         val car = Car(transmission = Transmission.MANUAL)
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.transmission, IsEqual(R.string.manual))
@@ -154,7 +165,8 @@ class CarUiModelMapperTest {
         val car = Car(transmission = Transmission.AUTO)
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.transmission, IsEqual(R.string.auto))
@@ -166,7 +178,8 @@ class CarUiModelMapperTest {
         val car = Car(transmission = Transmission.UNKNOWN)
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.transmission, IsEqual(R.string.unknown))
@@ -178,7 +191,8 @@ class CarUiModelMapperTest {
         val car = Car(innerCleanliness = InnerCleanliness.REGULAR)
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.innerCleanliness, IsEqual(R.string.regular))
@@ -190,7 +204,8 @@ class CarUiModelMapperTest {
         val car = Car(innerCleanliness = InnerCleanliness.CLEAN)
 
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.innerCleanliness, IsEqual(R.string.clean))
@@ -203,7 +218,8 @@ class CarUiModelMapperTest {
 
         //when
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.innerCleanliness, IsEqual(R.string.very_clean))
@@ -216,7 +232,8 @@ class CarUiModelMapperTest {
 
         //when
         //when
-        val carUiModel = CarUiModelMapper(car)
+        val carUiModel =
+            CarUiModelMapper(car)
 
         //then
         assertThat(carUiModel.innerCleanliness, IsEqual(R.string.unknown))
