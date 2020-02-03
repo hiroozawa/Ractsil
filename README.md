@@ -13,13 +13,13 @@ A apk can be downloaded [here](https://drive.google.com/open?id=1BHr_RzFMlmrzL0n
 
 ### Libraries
 
-- Kotlin Coroutines - For writing asynchronous code and keeping the hard work off the main thread.
-- Retrofit2, OkHttp3 and Gson - For the api network calls and json serializatio. Also retrofit integrates nicely with coroutines.
+- Kotlin Coroutines - Used for writing asynchronous code and easily keeping the hard work off the main thread.
+- Retrofit2, OkHttp3 and Gson - For the api network calls and json serialization. Also retrofit integrates nicely with coroutines.
 - Dagger Android - Used for constructing the dependency injection graph of our project.
 - Coil - An image loading library for Android backed by Kotlin Coroutines.
-- Architecture Components: Navigation with  safeargs, ViewModel, LiveData are used in this project.
+- Architecture Components: Navigation with safeargs, ViewModel, LiveData are used in this project.
 - Espresso - For UI and navigation tests.
-- MockWebserver - Makes mocking our api calls easy for integration tests.
+- MockWebserver - As its name suggests, it is used for mocking our api calls
 
 ### Architecture and Tests
 
