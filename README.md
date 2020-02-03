@@ -24,6 +24,4 @@ A apk can be downloaded [here](https://drive.google.com/open?id=1U2mRZsVCsjSiNDG
 ### Architecture and Tests
 
 The project Ractsil uses a rather simple architecture based on architecture blueprints. The repository, viewmodels and data mappers are all unit tested. 
-Using Dagger, Espresso and MockWebServer we are able to make “end to end tests”, these tests reach from the API calls to the UI rendering and navigation. It also tests if all the dependency injection modules are setup correctly.
-
-
+Using Dagger, Espresso and MockWebServer we are able to make “end to end tests”, these tests reach from the API calls to the UI  and navigation.
