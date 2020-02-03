@@ -3,7 +3,6 @@
     <string name="error">Error while loading cars. Check your internet connection.</string>
     <string name="no_cars">No cars were listed!</string>
     <string name="error_detail">Something wen\'t wrong, try again refreshing your screen</string>
-    <string name="make">Make: </string>
     <string name="model">Model: </string>
     <string name="owner">Owner: </string>
     <string name="fuel">Fuel: </string>

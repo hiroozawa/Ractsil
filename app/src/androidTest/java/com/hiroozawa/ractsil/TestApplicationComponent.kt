@@ -2,7 +2,6 @@ package com.hiroozawa.ractsil
 
 import android.content.Context
 import com.hiroozawa.ractsil.data.remote.RemoteDataModule
-import com.hiroozawa.ractsil.di.ApplicationComponent
 import com.hiroozawa.ractsil.di.CarListModule
 import com.hiroozawa.ractsil.di.CarMapModule
 import com.hiroozawa.ractsil.di.RepositoryModule

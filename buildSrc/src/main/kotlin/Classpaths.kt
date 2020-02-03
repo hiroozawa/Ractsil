@@ -3,5 +3,5 @@ object Classpaths {
     const val kotlin_gradle_plugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_gradle_plugin}"
 
-    const val nav_safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
+    const val nav_safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
 }

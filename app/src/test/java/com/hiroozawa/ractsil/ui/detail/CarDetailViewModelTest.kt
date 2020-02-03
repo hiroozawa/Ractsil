@@ -6,7 +6,8 @@ import com.hiroozawa.ractsil.util.LiveDataTestUtil
 import com.hiroozawa.ractsil.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.core.IsEqual
-import org.junit.Assert.*
+import org.junit.Assert.assertThat
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 

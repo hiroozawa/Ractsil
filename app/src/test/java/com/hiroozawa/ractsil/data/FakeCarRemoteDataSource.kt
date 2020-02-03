@@ -2,7 +2,6 @@ package com.hiroozawa.ractsil.data
 
 import com.hiroozawa.ractsil.data.remote.CarRemoteDataSource
 import com.hiroozawa.ractsil.data.remote.CarResponse
-import java.util.*
 
 class FakeCarRemoteDataSource(
     val responseList: MutableList<CarResponse>? = createFakeCarData()

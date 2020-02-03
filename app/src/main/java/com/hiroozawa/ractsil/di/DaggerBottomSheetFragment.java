@@ -12,10 +12,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
-import dagger.internal.Beta;
 
-
-@Beta
 public abstract class DaggerBottomSheetFragment extends BottomSheetDialogFragment implements HasAndroidInjector {
 
     @Inject

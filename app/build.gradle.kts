@@ -105,23 +105,22 @@ dependencies {
     implementation("androidx.annotation:annotation:${Versions.android_annotation}")
     implementation("com.google.android.gms:play-services-maps:${Versions.play_services}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.2.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.2.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigation}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
 
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.recyclerview:recyclerview:${Versions.recyclerview}")
+    implementation("androidx.legacy:legacy-support-v4:${Versions.legacy_support}")
+    implementation("androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_ext}")
 
-    implementation("io.coil-kt:coil:0.9.2")
+    implementation("io.coil-kt:coil:${Versions.coil}")
 
     // AndroidX Test - JVM testing
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
-    testImplementation("androidx.arch.core:core-testing:2.0.0")
-    testImplementation("androidx.test:core-ktx:1.2.0")
-    testImplementation("androidx.test.ext:junit-ktx:1.1.1")
-    testImplementation("androidx.test:rules:1.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
+    testImplementation("androidx.arch.core:core-testing:${Versions.arch_core_testing}")
+    testImplementation("androidx.test:core-ktx:${Versions.test_core}")
+    testImplementation("androidx.test.ext:junit-ktx:${Versions.junit}")
+    testImplementation("androidx.test:rules:${Versions.test_rules}")
     testImplementation("androidx.test:core:${Versions.test_core}")
     testImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
     implementation("androidx.test.espresso:espresso-idling-resource:${Versions.espresso_core}")
@@ -130,12 +129,12 @@ dependencies {
     // Android Test
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
     androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:${Versions.espresso_core}")
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0")
-    androidTestImplementation("androidx.test:rules:1.2.0")
+    androidTestImplementation("androidx.test.ext:junit:${Versions.junit}")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
+    androidTestImplementation("androidx.test:rules:${Versions.test_rules}")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:${Versions.okhttp}")
     // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
-    debugImplementation("androidx.fragment:fragment-testing:1.2.0")
+    debugImplementation("androidx.fragment:fragment-testing:${Versions.frag_testing}")
     androidTestImplementation ("androidx.test.espresso:espresso-contrib:${Versions.espresso_core}")
 
     // Dagger
