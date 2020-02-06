@@ -25,7 +25,7 @@
             android:layout_height="match_parent" />
 
         <ProgressBar
-            android:id="@+id/my_progressBar"
+            android:id="@+id/progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

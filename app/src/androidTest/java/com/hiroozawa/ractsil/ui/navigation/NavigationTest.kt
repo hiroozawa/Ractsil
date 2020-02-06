@@ -128,17 +128,6 @@ class NavigationTest {
             .check(matches(isDisplayed()))
     }
 
-
-
-    private fun clickOnViewChild(viewId: Int) = object : ViewAction {
-        override fun getConstraints() = null
-
-        override fun getDescription() = "Click on a child view with specified id."
-
-        override fun perform(uiController: UiController, view: View) =
-            click().perform(uiController, view.findViewById<View>(viewId))
-    }
-
     private fun launchActivity(): ActivityScenario<MainActivity>? {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         activityScenario.onActivity { activity ->
